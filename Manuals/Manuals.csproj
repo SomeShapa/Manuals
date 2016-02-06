@@ -198,6 +198,10 @@
     <Compile Include="Migrations\201602061809317_Add tables.Designer.cs">
       <DependentUpon>201602061809317_Add tables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602061853384_Rename CreativeId to ManualId in Rating.cs" />
+    <Compile Include="Migrations\201602061853384_Rename CreativeId to ManualId in Rating.Designer.cs">
+      <DependentUpon>201602061853384_Rename CreativeId to ManualId in Rating.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
@@ -1091,7 +1095,7 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Home\CreateNewCreative.cshtml" />
+    <Content Include="Views\Home\CreateNewManual.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\UserList.cshtml" />
@@ -1115,6 +1119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602061809317_Add tables.resx">
       <DependentUpon>201602061809317_Add tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602061853384_Rename CreativeId to ManualId in Rating.resx">
+      <DependentUpon>201602061853384_Rename CreativeId to ManualId in Rating.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.resx" />
     <EmbeddedResource Include="Resources\Resource.ru.resx" />

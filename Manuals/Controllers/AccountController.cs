@@ -19,7 +19,7 @@ namespace Manuals.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        //private CreativesDbContext context;
+        //private ManualsDbContext context;
         private UserProfileRepository userProfileRepository;
 
         public AccountController()

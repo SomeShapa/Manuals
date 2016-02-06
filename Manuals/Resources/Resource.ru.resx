@@ -120,8 +120,8 @@
   <data name="Application" xml:space="preserve">
     <value>Приложение</value>
   </data>
-  <data name="Creatives" xml:space="preserve">
-    <value>Креативы</value>
+  <data name="Manuals" xml:space="preserve">
+    <value>Учебные пособия</value>
   </data>
   <data name="LogOff" xml:space="preserve">
     <value>Выйти</value>

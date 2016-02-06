@@ -2,12 +2,12 @@
 (function() {
   Application.controller('HomeController', [
     '$scope', '$http', function($scope, $http) {
-      $scope.Creatives = [];
+      $scope.Manuals = [];
       $http({
         method: 'GET',
-        url: '/Home/GetCreatives'
+        url: '/Home/GetManuals'
       }).success(function(data) {
-        $scope.Creatives = data;
+        $scope.Manuals = data;
       });
     }
   ]);

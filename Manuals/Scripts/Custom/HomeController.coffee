@@ -2,11 +2,11 @@
     '$scope'
     '$http'
     ($scope, $http) ->
-        $scope.Creatives = []
+        $scope.Manuals = []
         $http(
             method: 'GET',
-            url: '/Home/GetCreatives').success (data) ->
-            $scope.Creatives = data
+            url: '/Home/GetManuals').success (data) ->
+            $scope.Manuals = data
             return
         return
 ]

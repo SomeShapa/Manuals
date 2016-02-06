@@ -79,11 +79,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Creatives.
+        ///   Looks up a localized string similar to Manuals.
         /// </summary>
-        public static string Creatives {
+        public static string Manuals {
             get {
-                return ResourceManager.GetString("Creatives", resourceCulture);
+                return ResourceManager.GetString("Manuals", resourceCulture);
             }
         }
         

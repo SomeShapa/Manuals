@@ -1,10 +1,10 @@
 ﻿# CoffeeScript
-Application.controller 'AddNewCreativeController', [
+Application.controller 'AddNewManualController', [
     '$scope'
     '$http'
     ($scope, $http) ->
         $scope.Categories = []
-        $scope.NewCreative = { Tags: [] };
+        $scope.NewManual = { Tags: [] };
         $scope.Tags = [];
         $http(
             method: 'GET',
@@ -14,7 +14,7 @@ Application.controller 'AddNewCreativeController', [
         $http(
             method: 'GET',
             url: '/Home/GetTags',
-            data: { Id: $scope.NewCreative.Id }).success (data) ->
+            data: { Id: $scope.NewManual.Id }).success (data) ->
             $scope.Tags = data
             return
         $scope.AddTag = (tag) ->
@@ -22,13 +22,13 @@ Application.controller 'AddNewCreativeController', [
                 method: 'POST',
                 url: '/Home/AddNewTag',
                 data: { tagName: $scope.NewTag }).success (data) ->
-                $scope.NewCreative.Tags.push data.tag if data.success
+                $scope.NewManual.Tags.push data.tag if data.success
                 $scope.NewTag = ''
                 return
-        $scope.Create = (creative) ->
+        $scope.Create = (Manual) ->
             $http(
                 method: 'POST',
-                url: '/Home/CreateNewCreative',
-                data: creative)
+                url: '/Home/CreateNewManual',
+                data: Manual)
         return
 ]

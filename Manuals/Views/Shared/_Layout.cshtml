@@ -21,7 +21,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink(Resources.Resource.Creatives, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink(Resources.Resource.Manuals, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
 
             <div class="navbar-collapse collapse">
@@ -33,7 +33,7 @@
             <button type="button" class="btn large" style="position:fixed; top:5px; height:40px;" data-toggle="collapse" data-target=".dropdown-collapse">         </button>
             <div class="dropdown-collapse collapse left-navbar ng-class:Theme">
                 <div>
-                    @Html.ActionLink("Create New", "CreateNewCreative", "Home", new { ReturnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Create New", "CreateNewManual", "Home", new { ReturnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-default" })
                 </div>
                 <div>
                     @Html.ActionLink("Edit Profile", "EditUserProfile", "User", null, new { @class = "btn btn-default" })

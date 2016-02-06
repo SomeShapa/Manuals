@@ -65,12 +65,12 @@ namespace Manuals.Migrations
                 "dbo.Ratings",
                 c => new
                     {
-                        CreativeId = c.Int(nullable: false),
+                        ManualId = c.Int(nullable: false),
                         UserId = c.String(nullable: false, maxLength: 128),
                         Liked = c.Boolean(),
                         Manual_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.CreativeId, t.UserId })
+                .PrimaryKey(t => new { t.ManualId, t.UserId })
                 .ForeignKey("dbo.Manuals", t => t.Manual_Id)
                 .Index(t => t.Manual_Id);
             

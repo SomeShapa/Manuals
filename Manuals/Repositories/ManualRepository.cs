@@ -25,10 +25,10 @@ namespace Manuals.Repositories
 
         public void Delete(object id)
         {
-            Manual creative = context.Manuals.Find((int)id);
-            if (creative != null)
+            Manual Manual = context.Manuals.Find((int)id);
+            if (Manual != null)
             {
-                context.Manuals.Remove(creative);
+                context.Manuals.Remove(Manual);
             }
         }
 

@@ -11,7 +11,7 @@ namespace Manuals.Entities
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int CreativeId { get; set; }
+        public int ManualId { get; set; }
 
         [Key]
         [Column(Order = 1)]

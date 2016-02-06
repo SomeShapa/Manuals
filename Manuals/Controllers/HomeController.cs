@@ -36,13 +36,13 @@ namespace Manuals.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetCreatives()
+        public ActionResult GetManuals()
         {
             IEnumerable<ManualViewModel> Manulas =Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll());
             return Json(Manulas, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult CreateNewCreative(string ReturnUrl)
+        public ActionResult CreateNewManual(string ReturnUrl)
         {
             ManualViewModel model = new ManualViewModel();
             ViewBag.Categories = GetCategoriesAsSelectList();
@@ -51,7 +51,7 @@ namespace Manuals.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateNewCreative(ManualViewModel model, string ReturnUrl = "/")
+        public ActionResult CreateNewManual(ManualViewModel model, string ReturnUrl = "/")
         {
             if (ModelState.IsValid)
             {
