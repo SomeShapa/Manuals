@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body ng-app="Creativity">
+
+    <div class="navbar navbar-default navbar-fixed-top ng-class:NavbarTheme">
+
+        <div class="container">
+
+            <div class="navbar-header" style="margin-left:30px;">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink(Resources.Resource.Creatives, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+
+            <div class="navbar-collapse collapse">
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <button type="button" class="btn large" style="position:fixed; top:5px; height:40px;" data-toggle="collapse" data-target=".dropdown-collapse">         </button>
+            <div class="dropdown-collapse collapse left-navbar ng-class:Theme">
+                <div>
+                    @Html.ActionLink("Create New", "CreateNewCreative", "Home", new { ReturnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-default" })
+                </div>
+                <div>
+                    @Html.ActionLink("Edit Profile", "EditUserProfile", "User", null, new { @class = "btn btn-default" })
+                </div>
+            </div>
+        }
+
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <div>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/bootstrap3-typeahead.min.js"></script>
+    <script src="~/Scripts/AngularJS/angular.min.js"></script>
+    <script src="~/Scripts/Custom/Application.js"></script>
+    <script src="~/Scripts/Custom/HomeController.js"></script>
+    <script src="~/Scripts/Custom/AdminController.js"></script>
+    <script src="~/Scripts/Custom/AddNewManualController.js"></script>
+    <script src="~/Scripts/Custom/AutocompleteTag.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "UserList";
+
+}
+<div class="row">
+    <div ng-controller="AdminController" class="text-right col-md-4">
+        <h2>UserList</h2>
+        <div ng-repeat="user in Users">
+            {{user.UserName}}
+            <a href="/User/ViewUserProfile/{{user.Id}}">View</a>
+            <button class="btn-danger btn text-right" ng-click="DeleteUser(user.Id)">Delete</button>
+        </div>
+    </div>
+</div>

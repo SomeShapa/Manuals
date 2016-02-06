@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div ng-controller="HomeController">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-2">
+            <div ng-repeat="Creative in Creatives">
+                <div class="well">
+                    <h4>{{Creative.Id}}. {{Creative.Name}}</h4>
+                    <h5>Author: {{Creative.UserProfile.Email}}</h5>
+                    <h5>{{Creative.Category.Name}} <span ng-repeat="tag in Creative.Tags">{{tag.Name}}</span></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

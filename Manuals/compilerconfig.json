@@ -1,0 +1,18 @@
+﻿[
+  {
+    "outputFile": "Scripts/Custom/AddNewManualController.js",
+    "inputFile": "Scripts/Custom/AddNewManualController.coffee"
+  },
+  {
+    "outputFile": "Scripts/Custom/AutocompleteTag.js",
+    "inputFile": "Scripts/Custom/AutocompleteTag.coffee"
+  },
+  {
+    "outputFile": "Scripts/Custom/HomeController.js",
+    "inputFile": "Scripts/Custom/HomeController.coffee"
+  },
+  {
+    "outputFile": "Scripts/Custom/TestController.js",
+    "inputFile": "Scripts/Custom/TestController.coffee"
+  }
+]

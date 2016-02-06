@@ -1,0 +1,72 @@
+﻿@model Manuals.Models.ManualViewModel
+
+@{
+    ViewBag.Title = "CreateNewCreative";
+}
+
+<div ng-controller="AddNewCreativeController">
+    <h2>Create New Creative</h2>
+    {{NewCreative.Id}}
+    @*@using (Html.BeginForm())*@
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("ReturnUrl", ViewBag.ReturnUrl as string)
+        @Html.HiddenFor(model => model.Id, new { ng_model = "NewCreative.Id" })
+        <div class="form-horizontal">
+            <hr />
+            <div class="form-group">
+                <label for="Name" class="col-md-2 control-label">Name</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", ng_model = "NewCreative.Name"} })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Description" class="col-md-2 control-label">Description</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", ng_model = "NewCreative.Description" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(e => e.CategoryId, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    <select ng-model="NewCreative.CategoryId" id="CategoryId" name="CategoryId" class="btn btn-default">
+                        <option ng-repeat="category in Categories" value="{{category.Id}}">{{category.Name}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control", ng_model = "NewCreative.Body" } })
+                    @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2" for="NewTag">Tags</label>
+                <div class="col-md-10">
+                    <input  name="NewTag" type="text" class="form-control" placeholder="" id="NewTag" ng-model="NewTag"
+                           data-autocomplete='/Home/AutoCompleteTag' data-provide="typeahead" autocomplete="off" />
+                    <button class="btn btn-default" ng-click="AddTag(NewTag)">Add</button>
+                </div><span ng-repeat="tag in NewCreative.Tags">{{tag.Name}} </span>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Create" class="btn btn-default" ng-click="Create(NewCreative)"/>
+                </div>
+            </div>
+        </div>
+    @*}*@
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>

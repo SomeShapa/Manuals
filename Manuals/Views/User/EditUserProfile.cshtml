@@ -1,0 +1,25 @@
+﻿@model Manuals.Entities.UserProfile
+
+@{
+    ViewBag.Title = "EditUserProfile";
+}
+
+<h2>EditUserProfile</h2>
+
+<h4>@Model.Email</h4>
+
+@Html.ActionLink("Change Password", "ChangePassword", "Manage")
+@using (Html.BeginForm("ChangeCulture", "Language"))
+{
+    <select name="lang">
+        <option value="ru">Русский</option>
+        <option value="en">English</option>
+    </select>
+    <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+}
+
+
+<div>
+    <button class="btn" ng-click="Theme='DarkTheme'; NavbarTheme='navbar-inverse';"></button>
+    <button class="btn" ng-click="Theme=''; NavbarTheme='';"></button>
+</div>
