@@ -7,11 +7,11 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    
 </head>
-<body ng-app="Creativity" class="ng-class:Theme">
+<body ng-app="Manuals" class="ng-class:Theme" ng-controller="ThemeController">
 
-    <div class="navbar navbar-default navbar-fixed-top ng-class:NavbarTheme">
+    <div class="navbar navbar-default navbar-fixed-top ng-class:Theme" id="Navbar">
 
         <div class="container">
 
@@ -62,6 +62,7 @@
     <script src="~/Scripts/Custom/AddNewManualController.js"></script>
     <script src="~/Scripts/Custom/LangController.js"></script>
     <script src="~/Scripts/Custom/AutocompleteTag.js"></script>
+    <script src="~/Scripts/Custom/ThemeController.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

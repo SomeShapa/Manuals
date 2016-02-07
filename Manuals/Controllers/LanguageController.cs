@@ -52,5 +52,24 @@ namespace Manuals.Controllers
             //Response.Cookies.Add(cookie);
             return Json(new { result = "Refresh" }, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult GetTheme()
+        {
+            string UserId = User.Identity.GetUserId();
+            ApplicationUser user = userRepository.GetById(UserId);
+            return Json(new { result = user.Theme }, JsonRequestBehavior.AllowGet); 
+        }
+
+
+        public ActionResult SaveTheme(string Theme)
+        {
+            string UserId = User.Identity.GetUserId();
+            ApplicationUser user = userRepository.GetById(UserId);
+            user.Theme = Theme;
+            userRepository.Update(user);
+            userRepository.Save();
+            return View();
+        }
+
     }
 }
