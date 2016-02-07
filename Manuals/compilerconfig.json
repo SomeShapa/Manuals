@@ -14,5 +14,9 @@
   {
     "outputFile": "Scripts/Custom/TestController.js",
     "inputFile": "Scripts/Custom/TestController.coffee"
+  },
+  {
+    "outputFile": "Scripts/Custom/LangController.js",
+    "inputFile": "Scripts/Custom/LangController.coffee"
   }
 ]

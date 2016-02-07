@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Manuals.Models;
+using Manuals.Repositories;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -10,21 +13,31 @@ namespace Manuals.Filters
 {
     public class CultureAttribute : FilterAttribute, IActionFilter
     {
+        private UserRepository userRepository;
+
+        public CultureAttribute()
+        {
+            userRepository = new UserRepository(new ApplicationDbContext());
+        }
+
+
         public void OnActionExecuted(ActionExecutedContext filterContext)
         {
             string cultureName = null;
             // Получаем куки из контекста, которые могут содержать установленную культуру
-            HttpCookie cultureCookie = filterContext.HttpContext.Request.Cookies["lang"];
-            if (cultureCookie != null)
-                cultureName = cultureCookie.Value;
-            else
-                cultureName = "ru";
-
+            //HttpCookie cultureCookie = filterContext.HttpContext.Request.Cookies["lang"];
+            //if (cultureCookie != null)
+            //    cultureName = cultureCookie.Value;
+            //else
+            //    cultureName = "ru";
+            string UserId =  filterContext.HttpContext.User.Identity.GetUserId();
+            ApplicationUser user = userRepository.GetById(UserId);
+            cultureName = user.Language;
             // Список культур
-            List<string> cultures = new List<string>() { "ru", "en", "de" };
+            List<string> cultures = new List<string>() { "ru", "en" };
             if (!cultures.Contains(cultureName))
             {
-                cultureName = "ru";
+                cultureName = "en";
             }
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(cultureName);
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(cultureName);

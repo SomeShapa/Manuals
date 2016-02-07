@@ -125,7 +125,6 @@ namespace Manuals.Models
             modelBuilder.Entity<Tag>()
                 .Property(e => e.Name)
                 .IsUnicode(false);
-
         }
 
 

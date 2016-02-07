@@ -29,9 +29,9 @@ namespace Manuals.Infrastructure
             Mapper.CreateMap<Tag, TagViewModel>();
             Mapper.CreateMap<TagViewModel,Tag>();
 
-            //Mapper.CreateMap<ApplicationUser, ApplicationUser>()
-            //    .ForMember(d => d.Manuals, opt => opt.Ignore());
-            Mapper.CreateMap<UserViewModel, ApplicationUser>();
+            Mapper.CreateMap<ApplicationUser, ApplicationUser>()
+                .ForMember(d => d.Manuals, opt => opt.Ignore());
+            //Mapper.CreateMap<UserViewModel, ApplicationUser>();
 
         }
     }

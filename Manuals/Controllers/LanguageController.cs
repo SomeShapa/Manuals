@@ -1,4 +1,7 @@
 ﻿using Manuals.Filters;
+using Manuals.Models;
+using Manuals.Repositories;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,36 +13,44 @@ namespace Manuals.Controllers
     [Culture]
     public class LanguageController : Controller
     {
-        
+        private UserRepository userRepository;
+
+        public LanguageController()
+        {
+            userRepository = new UserRepository(new ApplicationDbContext());
+        }
 
         public ActionResult Index()
         {
             return View();
         }
-
+        [HttpPost]
         public ActionResult ChangeCulture(string lang)
         {
-            string returnUrl = Request.UrlReferrer.AbsolutePath;
-            // Список культур
-            List<string> cultures = new List<string>() { "ru", "en", "de" };
+            string UserId = User.Identity.GetUserId();
+            ApplicationUser user = userRepository.GetById(UserId);
+            List<string> cultures = new List<string>() { "ru", "en" };
             if (!cultures.Contains(lang))
             {
-                lang = "ru";
+                lang = "en";
             }
+            user.Language = lang;
+            userRepository.Update(user);
+            userRepository.Save();
             // Сохраняем выбранную культуру в куки
-            HttpCookie cookie = Request.Cookies["lang"];
-            if (cookie != null)
-                cookie.Value = lang;   // если куки уже установлено, то обновляем значение
-            else
-            {
+            //HttpCookie cookie = Request.Cookies["lang"];
+            //if (cookie != null)
+            //    cookie.Value = lang;   // если куки уже установлено, то обновляем значение
+            //else
+            //{
 
-                cookie = new HttpCookie("lang");
-                cookie.HttpOnly = false;
-                cookie.Value = lang;
-                cookie.Expires = DateTime.Now.AddYears(1);
-            }
-            Response.Cookies.Add(cookie);
-            return Redirect(returnUrl);
+            //    cookie = new HttpCookie("lang");
+            //    cookie.HttpOnly = false;
+            //    cookie.Value = lang;
+            //    cookie.Expires = DateTime.Now.AddYears(1);
+            //}
+            //Response.Cookies.Add(cookie);
+            return Json(new { result = "Refresh" }, JsonRequestBehavior.AllowGet);
         }
     }
 }

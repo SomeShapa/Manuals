@@ -6,7 +6,7 @@
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right" ng-controller="LangController">
         <li>
             @Html.ActionLink("My Profile", "ViewUserProfile", "User", routeValues: new { Id = User.Identity.GetUserId() }, htmlAttributes: new { title = "Manage" })
         </li>
@@ -15,6 +15,9 @@
         {
             <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
         }
+        <li><button type="button" class="btn btn-default" ng-click="ChangeCulture('ru')">Ru</button></li>
+        <li><button type="button" class="btn btn-default" ng-click="ChangeCulture('en')">En</button></li>
+
     </ul>
     }
 }
