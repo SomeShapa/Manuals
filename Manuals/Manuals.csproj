@@ -52,6 +52,10 @@
       <HintPath>..\packages\CloudinaryDotNet.1.0.23\lib\net40\CloudinaryDotNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Duke.Owin.VkontakteMiddleware, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Duke.Owin.VkontakteMiddleware.1.2.0.0\lib\net45\Duke.Owin.VkontakteMiddleware.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -194,29 +198,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\AutoMapperConfiguration.cs" />
-    <Compile Include="Migrations\201602061803545_InitialCreate.cs" />
-    <Compile Include="Migrations\201602061803545_InitialCreate.Designer.cs">
-      <DependentUpon>201602061803545_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201602070729033_InitialCreate.cs" />
+    <Compile Include="Migrations\201602070729033_InitialCreate.Designer.cs">
+      <DependentUpon>201602070729033_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602061809317_Add tables.cs" />
-    <Compile Include="Migrations\201602061809317_Add tables.Designer.cs">
-      <DependentUpon>201602061809317_Add tables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602061853384_Rename CreativeId to ManualId in Rating.cs" />
-    <Compile Include="Migrations\201602061853384_Rename CreativeId to ManualId in Rating.Designer.cs">
-      <DependentUpon>201602061853384_Rename CreativeId to ManualId in Rating.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602070600384_user identity add two foreign key.cs" />
-    <Compile Include="Migrations\201602070600384_user identity add two foreign key.Designer.cs">
-      <DependentUpon>201602070600384_user identity add two foreign key.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602070604372_delete UserProfile table.cs" />
-    <Compile Include="Migrations\201602070604372_delete UserProfile table.Designer.cs">
-      <DependentUpon>201602070604372_delete UserProfile table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602070626017_add some properties to ApplicationUser.cs" />
-    <Compile Include="Migrations\201602070626017_add some properties to ApplicationUser.Designer.cs">
-      <DependentUpon>201602070626017_add some properties to ApplicationUser.cs</DependentUpon>
+    <Compile Include="Migrations\201602070732337_add tables.cs" />
+    <Compile Include="Migrations\201602070732337_add tables.Designer.cs">
+      <DependentUpon>201602070732337_add tables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1137,23 +1125,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602061803545_InitialCreate.resx">
-      <DependentUpon>201602061803545_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602070729033_InitialCreate.resx">
+      <DependentUpon>201602070729033_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602061809317_Add tables.resx">
-      <DependentUpon>201602061809317_Add tables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602061853384_Rename CreativeId to ManualId in Rating.resx">
-      <DependentUpon>201602061853384_Rename CreativeId to ManualId in Rating.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602070600384_user identity add two foreign key.resx">
-      <DependentUpon>201602070600384_user identity add two foreign key.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602070604372_delete UserProfile table.resx">
-      <DependentUpon>201602070604372_delete UserProfile table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602070626017_add some properties to ApplicationUser.resx">
-      <DependentUpon>201602070626017_add some properties to ApplicationUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602070732337_add tables.resx">
+      <DependentUpon>201602070732337_add tables.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.resx" />
     <EmbeddedResource Include="Resources\Resource.ru.resx" />
