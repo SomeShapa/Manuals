@@ -202,6 +202,10 @@
     <Compile Include="Migrations\201602071008098_add theme.Designer.cs">
       <DependentUpon>201602071008098_add theme.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602071335576_BirthDate from DateTime to Date.cs" />
+    <Compile Include="Migrations\201602071335576_BirthDate from DateTime to Date.Designer.cs">
+      <DependentUpon>201602071335576_BirthDate from DateTime to Date.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
@@ -273,6 +277,12 @@
     <Content Include="Scripts\Custom\AutocompleteTag.min.js">
       <DependentUpon>AutocompleteTag.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\Custom\EditUserController.js">
+      <DependentUpon>EditUserController.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Custom\EditUserController.min.js">
+      <DependentUpon>EditUserController.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\Custom\HomeController.js">
       <DependentUpon>HomeController.coffee</DependentUpon>
     </Content>
@@ -324,6 +334,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\Custom\LangController.coffee" />
     <Content Include="Scripts\Custom\ThemeController.coffee" />
+    <Content Include="Scripts\Custom\EditUserController.coffee" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -1130,6 +1141,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201602071008098_add theme.resx">
       <DependentUpon>201602071008098_add theme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602071335576_BirthDate from DateTime to Date.resx">
+      <DependentUpon>201602071335576_BirthDate from DateTime to Date.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.resx" />
     <EmbeddedResource Include="Resources\Resource.ru.resx" />

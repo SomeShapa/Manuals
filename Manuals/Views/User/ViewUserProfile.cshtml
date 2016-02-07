@@ -10,5 +10,5 @@
 <p>@Model.Email</p>
 @if (User.IsInRole("Admin") || Model.Id == User.Identity.GetUserId())
 {
-    @Html.ActionLink("Edit", "EditUserProfile", "User", new { userId = Model.Id }, new { @class = "btn btn-default" })
+    @Html.ActionLink("Edit", "EditUserProfile", "User", new { userId = Model.Id, returnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-default" })
 }

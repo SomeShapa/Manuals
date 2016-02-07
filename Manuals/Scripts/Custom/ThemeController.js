@@ -8,15 +8,6 @@
       }).success(function(data) {
         $scope.Theme = data.result;
       });
-      $scope.SaveTheme = function(Theme) {
-        $http({
-          method: 'POST',
-          url: '/Language/SaveTheme',
-          data: {
-            Theme: Theme
-          }
-        }).success(function(data) {});
-      };
     }
   ]);
 

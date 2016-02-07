@@ -8,6 +8,7 @@ using Manuals.Filters;
 using Manuals.Entities;
 using Manuals.Repositories;
 using Manuals.Models;
+using AutoMapper;
 
 namespace Manuals.Controllers
 {
@@ -32,10 +33,26 @@ namespace Manuals.Controllers
             return View(model);
         }
 
-        public ActionResult EditUserProfile(string userId)
+        public ActionResult EditUserProfile(string userId, string returnUrl)
         {
             ApplicationUser user = userRepository.GetById(userId);
+            ViewBag.ReturnUrl = returnUrl;
             return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult GetUserById(string Id)
+        {
+            ApplicationUser user = Mapper.Map<ApplicationUser>(userRepository.GetById(Id));
+            return Json(user, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateUser(ApplicationUser user, string returnUrl = "/")
+        {
+            userRepository.Update(user);
+            userRepository.Save();
+            return Json(new { result = "Redirect", url = returnUrl });
         }
     }
 }

@@ -4,16 +4,45 @@
     ViewBag.Title = "EditUserProfile";
 }
 
-<h2>Edit User Profile</h2>
-@Html.HiddenFor(m => m.Id, new { ng_model = Model.Id })
-<h4>@Model.Email</h4>
-@if (Model.Id == User.Identity.GetUserId())
-{
-@Html.ActionLink("Change Password", "ChangePassword", "Manage")
-}
-
-
-<div>
-    <button class="btn" ng-click="Theme='DarkTheme'; SaveTheme('DarkTheme');"></button>
-    <button class="btn" ng-click="Theme=''; SaveTheme('');"></button>
+<div ng-controller="EditUserController">
+    <h2>Edit User Profile</h2>
+    @*@Html.HiddenFor(m => m.Id, new { ng_model = "Id", ng_ ="" })*@
+    <input type="hidden" ng-model="Id" value="@Model.Id"/>
+    <input type="hidden" ng-model="returnUrl" value="@ViewBag.ReturnUrl" />
+    <h4>@Model.Email</h4>
+    @if (Model.Id == User.Identity.GetUserId())
+    {
+        @Html.ActionLink("Change Password", "ChangePassword", "Manage")
+    }
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label for="FirstName" class="col-md-2 control-label">First Name</label>
+            <div class="col-md-10">
+                <input class="form-control" id="FirstName" ng-model="User.FirstName"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="SecondName" class="col-md-2 control-label">Second Name</label>
+            <div class="col-md-10">
+                <input class="form-control" id="SecondName" ng-model="User.SecondName" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="BirthDate" class="col-md-2 control-label">BirthDate</label>
+            <div class="col-md-10">
+                <input type="date" class="form-control" id="BirthDate" ng-model="User.BirthDate" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Description" class="col-md-2 control-label">Description</label>
+            <div class="col-md-10">
+                <textarea class="form-control" id="Description" ng-model="User.Description"></textarea>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-default" ng-click="SaveUser()">Save</button>
+    <div>
+        <button class="btn" ng-click="Theme='DarkTheme'; SaveTheme('DarkTheme');"></button>
+        <button class="btn" ng-click="Theme=''; SaveTheme('');"></button>
+    </div>
 </div>

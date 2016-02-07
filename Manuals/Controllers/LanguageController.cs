@@ -73,14 +73,14 @@ namespace Manuals.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveTheme(string Theme)
+        public ActionResult SaveTheme(string theme)
         {
             string UserId = User.Identity.GetUserId();
             ApplicationUser user = userRepository.GetById(UserId);
-            user.Theme = Theme;
+            user.Theme = theme;
             userRepository.Update(user);
             userRepository.Save();
-            return Json(Theme);
+            return Json(theme);
         }
 
     }
