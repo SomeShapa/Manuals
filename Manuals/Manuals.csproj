@@ -198,6 +198,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\AutoMapperConfiguration.cs" />
+    <Compile Include="Migrations\201602071008098_add theme.cs" />
+    <Compile Include="Migrations\201602071008098_add theme.Designer.cs">
+      <DependentUpon>201602071008098_add theme.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
@@ -287,6 +291,12 @@
     <Content Include="Scripts\Custom\TestController.min.js">
       <DependentUpon>TestController.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\Custom\ThemeController.js">
+      <DependentUpon>ThemeController.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Custom\ThemeController.min.js">
+      <DependentUpon>ThemeController.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\AngularJS\angular.min.js.map" />
     <Content Include="Scripts\AngularJS\angular-touch.min.js.map" />
@@ -313,6 +323,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\Custom\LangController.coffee" />
+    <Content Include="Scripts\Custom\ThemeController.coffee" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -1117,6 +1128,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602071008098_add theme.resx">
+      <DependentUpon>201602071008098_add theme.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.resx" />
     <EmbeddedResource Include="Resources\Resource.ru.resx" />
   </ItemGroup>

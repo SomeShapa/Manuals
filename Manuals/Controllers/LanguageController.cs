@@ -44,9 +44,9 @@ namespace Manuals.Controllers
             {
                 string UserId = User.Identity.GetUserId();
                 ApplicationUser user = userRepository.GetById(UserId);
-                user.Language = lang;
-                userRepository.Update(user);
-                userRepository.Save();
+            user.Language = lang;
+            userRepository.Update(user);
+            userRepository.Save();
             }
         }
 
@@ -64,5 +64,24 @@ namespace Manuals.Controllers
             }
             Response.Cookies.Add(cookie);
         }
+
+        public ActionResult GetTheme()
+        {
+            string UserId = User.Identity.GetUserId();
+            ApplicationUser user = userRepository.GetById(UserId);
+            return Json(new { result = user.Theme }, JsonRequestBehavior.AllowGet); 
+        }
+
+        [HttpPost]
+        public ActionResult SaveTheme(string Theme)
+        {
+            string UserId = User.Identity.GetUserId();
+            ApplicationUser user = userRepository.GetById(UserId);
+            user.Theme = Theme;
+            userRepository.Update(user);
+            userRepository.Save();
+            return Json(Theme);
+        }
+
     }
 }
