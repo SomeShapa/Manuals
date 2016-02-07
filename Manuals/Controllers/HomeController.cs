@@ -61,7 +61,7 @@ namespace Manuals.Controllers
                 Manual manual = Mapper.Map<Manual>(model);
                 manualRepository.Add(manual);
                 manualRepository.Save();
-                return Redirect(ReturnUrl);
+                return Json(new { result = "Redirect", url = ReturnUrl });
             }
             return View(model);
         }

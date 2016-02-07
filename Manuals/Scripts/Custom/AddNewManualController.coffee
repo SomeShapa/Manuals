@@ -10,6 +10,7 @@ Application.controller 'AddNewManualController', [
             method: 'GET',
             url: '/Home/GetCategories').success (data) ->
             $scope.Categories = data
+            $scope.NewManual.CategoryId = $scope.Categories[0].Id
             return
         $http(
             method: 'GET',
@@ -29,6 +30,8 @@ Application.controller 'AddNewManualController', [
             $http(
                 method: 'POST',
                 url: '/Home/CreateNewManual',
-                data: Manual)
+                data: { model: Manual, ReturnUrl: $scope.ReturnUrl }).success (data) ->
+                window.location.href = data.url if data.result == 'Redirect'
+                return
         return
 ]

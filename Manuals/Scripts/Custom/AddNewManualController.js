@@ -12,6 +12,7 @@
         url: '/Home/GetCategories'
       }).success(function(data) {
         $scope.Categories = data;
+        $scope.NewManual.CategoryId = $scope.Categories[0].Id;
       });
       $http({
         method: 'GET',
@@ -40,7 +41,14 @@
         return $http({
           method: 'POST',
           url: '/Home/CreateNewManual',
-          data: Manual
+          data: {
+            model: Manual,
+            ReturnUrl: $scope.ReturnUrl
+          }
+        }).success(function(data) {
+          if (data.result === 'Redirect') {
+            window.location.href = data.url;
+          }
         });
       };
     }
