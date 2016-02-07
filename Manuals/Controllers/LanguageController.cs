@@ -68,8 +68,12 @@ namespace Manuals.Controllers
         public ActionResult GetTheme()
         {
             string UserId = User.Identity.GetUserId();
-            ApplicationUser user = userRepository.GetById(UserId);
-            return Json(new { result = user.Theme }, JsonRequestBehavior.AllowGet); 
+            if (UserId != null)
+            {
+                ApplicationUser user = userRepository.GetById(UserId);
+                return Json(new { result = user.Theme }, JsonRequestBehavior.AllowGet);
+            }
+            return null;
         }
 
         [HttpPost]

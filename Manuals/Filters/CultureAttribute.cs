@@ -24,9 +24,16 @@ namespace Manuals.Filters
         public void OnActionExecuted(ActionExecutedContext filterContext)
         {
             string cultureName = null;
-            cultureName = GetLangFromCookie(filterContext);
-            //cultureName = GetLangFromDB(filterContext);
-
+            // Получаем куки из контекста, которые могут содержать установленную культуру
+            //HttpCookie cultureCookie = filterContext.HttpContext.Request.Cookies["lang"];
+            //if (cultureCookie != null)
+            //    cultureName = cultureCookie.Value;
+            //else
+            //    cultureName = "ru";
+            string UserId =  filterContext.HttpContext.User.Identity.GetUserId();
+            ApplicationUser user = userRepository.GetById(UserId);
+            cultureName = user.Language;
+            // Список культур
             List<string> cultures = new List<string>() { "ru", "en" };
             if (!cultures.Contains(cultureName))
             {

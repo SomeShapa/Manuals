@@ -26,5 +26,9 @@
   {
     "outputFile": "Scripts/Custom/EditUserController.js",
     "inputFile": "Scripts/Custom/EditUserController.coffee"
+  },
+  {
+    "outputFile": "Scripts/Custom/ProfileController.js",
+    "inputFile": "Scripts/Custom/ProfileController.coffee"
   }
 ]

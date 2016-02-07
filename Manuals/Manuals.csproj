@@ -295,6 +295,13 @@
     <Content Include="Scripts\Custom\LangController.min.js">
       <DependentUpon>LangController.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\Custom\ProfileController.js">
+      <DependentUpon>ProfileController.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Custom\ProfileController.min.js">
+      <DependentUpon>ProfileController.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Custom\TagCloud.js" />
     <Content Include="Scripts\Custom\TestController.js">
       <DependentUpon>TestController.coffee</DependentUpon>
     </Content>
@@ -335,6 +342,7 @@
     <Content Include="Scripts\Custom\LangController.coffee" />
     <Content Include="Scripts\Custom\ThemeController.coffee" />
     <Content Include="Scripts\Custom\EditUserController.coffee" />
+    <Content Include="Scripts\Custom\ProfileController.coffee" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />

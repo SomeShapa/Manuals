@@ -8,7 +8,7 @@
         <div ng-repeat="user in Users">
             {{user.UserName}}
             <a href="/User/ViewUserProfile/{{user.Id}}">View</a>
-            <button class="btn-danger btn text-right" ng-click="DeleteUser(user.Id)">Delete</button>
+            <button class="btn-danger btn text-right" ng- ng-click="DeleteUser(user.Id)">Delete</button>
         </div>
     </div>
 </div>

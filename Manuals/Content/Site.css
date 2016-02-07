@@ -38,10 +38,14 @@ textarea {
     background-color:rgb(60, 60, 60);
     border-color:rgb(20, 20, 20);
    color:rgb(230, 230, 230);
+   
 }
  #Navbar.DarkTheme { 
   background-color:rgb(20, 20, 20);
    color:rgb(200, 200, 200);
 
+}
+.ng-binding, DarkTheme {
+    color:rgb(108, 108, 108)
 }
 

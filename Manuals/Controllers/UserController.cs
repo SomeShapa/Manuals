@@ -16,11 +16,13 @@ namespace Manuals.Controllers
     public class UserController : Controller
     {
         private readonly UserRepository userRepository;
+        private readonly ManualRepository manualRepository;
 
         public UserController()
         {
             userRepository = new UserRepository(new ApplicationDbContext());
-        }
+         
+    }
 
         public ActionResult Index()
         {
@@ -53,6 +55,14 @@ namespace Manuals.Controllers
             userRepository.Update(user);
             userRepository.Save();
             return Json(new { result = "Redirect", url = returnUrl });
+        }
+
+        [HttpGet]
+        public ActionResult GetUserManuals(string ID)
+        {
+    
+            IEnumerable<ManualViewModel> manuals = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll().Where(X=>X.UserId==ID));
+            return Json(manuals, JsonRequestBehavior.AllowGet);
         }
     }
 }
