@@ -4,6 +4,10 @@
 
 <div ng-controller="HomeController">
     <div class="row">
+        <div ng-controller="controller" class="col-md-5 col-md-offset-2">
+            <jqcloud words="words" width="500" height="350" colors="{{colors}}" delay="10" steps="7" font-size="{from:0.09, to:0.04}"></jqcloud>
+        </div>
+
         <div class="col-md-6 col-md-offset-2">
             <div ng-repeat="Manual in Manuals">
                 <div class="well">

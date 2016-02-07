@@ -1,4 +1,4 @@
-﻿var Application = angular.module('Manuals', [], function ($httpProvider) {
+﻿var Application = angular.module('Manuals', ['angular-jqcloud'], function ($httpProvider) {
     // Use x-www-form-urlencoded Content-Type
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 

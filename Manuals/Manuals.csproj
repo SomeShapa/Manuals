@@ -281,12 +281,14 @@
     <Content Include="Scripts\Custom\AutocompleteTag.min.js">
       <DependentUpon>AutocompleteTag.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\Custom\CloudTagController.js" />
     <Content Include="Scripts\Custom\HomeController.js">
       <DependentUpon>HomeController.coffee</DependentUpon>
     </Content>
     <Content Include="Scripts\Custom\HomeController.min.js">
       <DependentUpon>HomeController.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\Custom\jqcloud.min.js" />
     <Content Include="Scripts\Custom\LangController.js">
       <DependentUpon>LangController.coffee</DependentUpon>
     </Content>
