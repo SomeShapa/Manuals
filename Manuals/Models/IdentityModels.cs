@@ -126,11 +126,6 @@ namespace Manuals.Models
                 .Property(e => e.Name)
                 .IsUnicode(false);
 
-            //modelBuilder.Entity<UserProfile>()
-            //    .HasMany(e => e.Manuals)
-            //    .WithRequired(e => e.User)
-            //    .HasForeignKey(e => e.UserId)
-            //    .WillCascadeOnDelete(false);
         }
 
 
