@@ -38,8 +38,8 @@ namespace Manuals.Controllers
         [HttpGet]
         public ActionResult GetManuals()
         {
-            IEnumerable<ManualViewModel> Manulas =Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll());
-            return Json(Manulas, JsonRequestBehavior.AllowGet);
+            IEnumerable<ManualViewModel> manuals = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll());
+            return Json(manuals, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult CreateNewManual(string ReturnUrl)
@@ -100,8 +100,8 @@ namespace Manuals.Controllers
 
         private TagViewModel CreateOrGetTag(string tagName)
         {
-            Tag tagExist =tagRepository.GetAll().FirstOrDefault(t => t.Name == tagName);
-            if(tagExist != null)
+            Tag tagExist = tagRepository.GetAll().FirstOrDefault(t => t.Name == tagName);
+            if (tagExist != null)
             {
                 return Mapper.Map<TagViewModel>(tagExist);
             }

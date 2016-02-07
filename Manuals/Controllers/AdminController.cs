@@ -15,11 +15,11 @@ namespace Manuals.Controllers
     public class AdminController : Controller
     {
         ApplicationDbContext authContext;
-        private UserProfileRepository userProfileRepository;
+        private UserRepository userRepository;
         public AdminController()
         {
             authContext = new ApplicationDbContext();
-            userProfileRepository = new UserProfileRepository(new ApplicationDbContext());
+            userRepository = new UserRepository(new ApplicationDbContext());
         }
 
         public ActionResult Index()
@@ -37,20 +37,20 @@ namespace Manuals.Controllers
         {
             authContext.Users.Remove(authContext.Users.First(x => (x.Id == Id)));
             authContext.SaveChangesAsync();
-            userProfileRepository.Delete(Id);
+            userRepository.Delete(Id);
             return Json(new { success = true, Id = Id });
         }
 
         [HttpGet]
         public ActionResult GetUsers()
         {
-            IEnumerable<ApplicationUser> Users = authContext.Users.ToList();
+            IEnumerable<ApplicationUser> Users =Mapper.Map<List<ApplicationUser>>(userRepository.GetAll());
             return Json(Users, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ViewUserProfile(string Id)
         {
-            UserProfile model = userProfileRepository.GetById(Id);
+            ApplicationUser model = userRepository.GetById(Id);
             return View(model);
         }
     }

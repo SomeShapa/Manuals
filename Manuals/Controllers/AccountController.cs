@@ -20,18 +20,18 @@ namespace Manuals.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         //private ManualsDbContext context;
-        private UserProfileRepository userProfileRepository;
+        private UserRepository userProfileRepository;
 
         public AccountController()
         {
-            userProfileRepository = new UserProfileRepository(new ApplicationDbContext());
+            userProfileRepository = new UserRepository(new ApplicationDbContext());
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
-            userProfileRepository = new UserProfileRepository(new ApplicationDbContext());
+            userProfileRepository = new UserRepository(new ApplicationDbContext());
         }
 
         public ApplicationSignInManager SignInManager
@@ -163,13 +163,6 @@ namespace Manuals.Controllers
                 {
                     await UserManager.AddToRoleAsync(user.Id, "User");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    UserProfile newUserProfile = new UserProfile
-                    {
-                        Id = user.Id,
-                        Email = user.Email
-                    };
-                    userProfileRepository.Add(newUserProfile);
-                    userProfileRepository.Save();
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

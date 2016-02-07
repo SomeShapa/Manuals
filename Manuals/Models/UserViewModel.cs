@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Manuals.Models
 {
-    public class UserProfileViewModel
+    public class UserViewModel
     {
         public string Id { get; set; }
 
@@ -14,8 +14,6 @@ namespace Manuals.Models
         public string SecondName { get; set; }
 
         public string Email { get; set; }
-
-        public int Theme { get; set; }
 
         public int Language { get; set; }
 

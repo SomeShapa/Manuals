@@ -14,11 +14,11 @@ namespace Manuals.Controllers
     [Culture]
     public class UserController : Controller
     {
-        private readonly UserProfileRepository userProfileRepository;
+        private readonly UserRepository userRepository;
 
         public UserController()
         {
-            userProfileRepository = new UserProfileRepository(new ApplicationDbContext());
+            userRepository = new UserRepository(new ApplicationDbContext());
         }
 
         public ActionResult Index()
@@ -28,14 +28,14 @@ namespace Manuals.Controllers
 
         public ActionResult ViewUserProfile(string Id)
         {
-            UserProfile model = userProfileRepository.GetById(Id);
+            ApplicationUser model = userRepository.GetById(Id);
             return View(model);
         }
 
         public ActionResult EditUserProfile()
         {
             var currentUserId = User.Identity.GetUserId();
-            UserProfile userProfile = userProfileRepository.GetById(currentUserId);
+            ApplicationUser userProfile = userRepository.GetById(currentUserId);
             return View(userProfile);
         }
     }

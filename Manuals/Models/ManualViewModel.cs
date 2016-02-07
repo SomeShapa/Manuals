@@ -36,7 +36,7 @@ namespace Manuals.Models
 
         public virtual CategoryViewModel Category { get; set; }
 
-        public virtual UserProfileViewModel UserProfile { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         public virtual ICollection<TagViewModel> Tags { get; set; }
 

@@ -4,12 +4,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Manuals.Entities;
+using System.Collections.Generic;
+using System;
 
 namespace Manuals.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+
+        public virtual ICollection<Medal> Medals { get; set; }
+
+        public virtual ICollection<Manual> Manuals { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -17,6 +24,17 @@ namespace Manuals.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public string FirstName { get; set; }
+
+        public string SecondName { get; set; }
+
+        public string Language { get; set; }
+
+        public DateTime? BirthDate { get; set; }
+
+        public string Description { get; set; }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -33,7 +51,6 @@ namespace Manuals.Models
         public virtual DbSet<RatingComment> RatingComments { get; set; }
         public virtual DbSet<Rating> Ratings { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
-        public virtual DbSet<UserProfile> UserProfiles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -101,35 +118,19 @@ namespace Manuals.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Medal>()
-                .HasMany(e => e.UserProfiles)
+                .HasMany(e => e.Users)
                 .WithMany(e => e.Medals)
-                .Map(m => m.ToTable("BasketMedals").MapLeftKey("MedalId").MapRightKey("UserId"));
+                .Map(m => m.ToTable("BasketMedal").MapLeftKey("MedalId").MapRightKey("UserId"));
 
             modelBuilder.Entity<Tag>()
                 .Property(e => e.Name)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<UserProfile>()
-                .Property(e => e.FirstName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<UserProfile>()
-                .Property(e => e.SecondName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<UserProfile>()
-                .Property(e => e.Email)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<UserProfile>()
-                .Property(e => e.Description)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<UserProfile>()
-                .HasMany(e => e.Manuals)
-                .WithRequired(e => e.UserProfile)
-                .HasForeignKey(e => e.UserId)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<UserProfile>()
+            //    .HasMany(e => e.Manuals)
+            //    .WithRequired(e => e.User)
+            //    .HasForeignKey(e => e.UserId)
+            //    .WillCascadeOnDelete(false);
         }
 
 

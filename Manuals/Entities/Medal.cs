@@ -1,5 +1,6 @@
 namespace Manuals.Entities
 {
+    using Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -11,7 +12,7 @@ namespace Manuals.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Medal()
         {
-            UserProfiles = new HashSet<UserProfile>();
+            Users = new HashSet<ApplicationUser>();
         }
 
         public int Id { get; set; }
@@ -24,6 +25,6 @@ namespace Manuals.Entities
         public string ImageLink { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserProfile> UserProfiles { get; set; }
+        public virtual ICollection<ApplicationUser> Users { get; set; }
     }
 }
