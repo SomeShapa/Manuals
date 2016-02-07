@@ -198,17 +198,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\AutoMapperConfiguration.cs" />
-    <Compile Include="Migrations\201602070729033_InitialCreate.cs" />
-    <Compile Include="Migrations\201602070729033_InitialCreate.Designer.cs">
-      <DependentUpon>201602070729033_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201602071008098_add theme.cs" />
+    <Compile Include="Migrations\201602071008098_add theme.Designer.cs">
+      <DependentUpon>201602071008098_add theme.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602070732337_add tables.cs" />
-    <Compile Include="Migrations\201602070732337_add tables.Designer.cs">
-      <DependentUpon>201602070732337_add tables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602070841282_add theme for user.cs" />
-    <Compile Include="Migrations\201602070841282_add theme for user.Designer.cs">
-      <DependentUpon>201602070841282_add theme for user.cs</DependentUpon>
+    <Compile Include="Migrations\201602071335576_BirthDate from DateTime to Date.cs" />
+    <Compile Include="Migrations\201602071335576_BirthDate from DateTime to Date.Designer.cs">
+      <DependentUpon>201602071335576_BirthDate from DateTime to Date.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -282,6 +278,12 @@
       <DependentUpon>AutocompleteTag.js</DependentUpon>
     </Content>
     <Content Include="Scripts\Custom\CloudTagController.js" />
+    <Content Include="Scripts\Custom\EditUserController.js">
+      <DependentUpon>EditUserController.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Custom\EditUserController.min.js">
+      <DependentUpon>EditUserController.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\Custom\HomeController.js">
       <DependentUpon>HomeController.coffee</DependentUpon>
     </Content>
@@ -341,6 +343,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\Custom\LangController.coffee" />
     <Content Include="Scripts\Custom\ThemeController.coffee" />
+    <Content Include="Scripts\Custom\EditUserController.coffee" />
     <Content Include="Scripts\Custom\ProfileController.coffee" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
@@ -1146,14 +1149,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602070729033_InitialCreate.resx">
-      <DependentUpon>201602070729033_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602071008098_add theme.resx">
+      <DependentUpon>201602071008098_add theme.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602070732337_add tables.resx">
-      <DependentUpon>201602070732337_add tables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602070841282_add theme for user.resx">
-      <DependentUpon>201602070841282_add theme for user.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602071335576_BirthDate from DateTime to Date.resx">
+      <DependentUpon>201602071335576_BirthDate from DateTime to Date.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.resx" />
     <EmbeddedResource Include="Resources\Resource.ru.resx" />

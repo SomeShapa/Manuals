@@ -6,6 +6,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Manuals.Entities;
 using System.Collections.Generic;
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Manuals.Models
 {
@@ -31,6 +33,7 @@ namespace Manuals.Models
 
         public string Language { get; set; }
 
+        [Column(TypeName = "Date")]
         public DateTime? BirthDate { get; set; }
 
         public string Description { get; set; }

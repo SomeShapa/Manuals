@@ -8,10 +8,10 @@
 <h2>View Profile</h2>
 
 <p>@Model.Email</p>
-@*@if (Model.Id == User.Identity.GetUserId())
+@if (User.IsInRole("Admin") || Model.Id == User.Identity.GetUserId())
 {
     @Html.ActionLink("Edit","EditUserProfile")
-}*@
+}
 
 
 <div ng-controller="ProfileController">
@@ -27,3 +27,5 @@
         </div>
     </div>
 </div>
+    @Html.ActionLink("Edit", "EditUserProfile", "User", new { userId = Model.Id, returnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-default" })
+}
