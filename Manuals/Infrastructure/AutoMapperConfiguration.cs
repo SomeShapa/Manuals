@@ -17,6 +17,7 @@ namespace Manuals.Infrastructure
 
             Mapper.CreateMap<Manual, ManualViewModel>().
                 ForMember(d => d.Rating, s => s.MapFrom(e => (e.Ratings.Count(r => r.Liked == true) - e.Ratings.Count(r => r.Liked == false))));
+
             Mapper.CreateMap<ManualViewModel, Manual>();
 
             Mapper.CreateMap<Category, CategoryViewModel>();

@@ -30,17 +30,20 @@ namespace Manuals.Filters
             //    cultureName = cultureCookie.Value;
             //else
             //    cultureName = "ru";
-            string UserId =  filterContext.HttpContext.User.Identity.GetUserId();
-            ApplicationUser user = userRepository.GetById(UserId);
-            cultureName = user.Language;
-            // Список культур
-            List<string> cultures = new List<string>() { "ru", "en" };
-            if (!cultures.Contains(cultureName))
+            string UserId = filterContext.HttpContext.User.Identity.GetUserId();
+            if (UserId != null)
             {
-                cultureName = "en";
+                ApplicationUser user = userRepository.GetById(UserId);
+                cultureName = user.Language;
+                // Список культур
+                List<string> cultures = new List<string>() { "ru", "en" };
+                if (!cultures.Contains(cultureName))
+                {
+                    cultureName = "en";
+                }
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(cultureName);
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(cultureName);
             }
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(cultureName);
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(cultureName);
         }
 
         public void OnActionExecuting(ActionExecutingContext filterContext)

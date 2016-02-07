@@ -8,6 +8,7 @@ using Manuals.Filters;
 using Manuals.Entities;
 using Manuals.Repositories;
 using Manuals.Models;
+using AutoMapper;
 
 namespace Manuals.Controllers
 {
@@ -15,11 +16,13 @@ namespace Manuals.Controllers
     public class UserController : Controller
     {
         private readonly UserRepository userRepository;
+        private readonly ManualRepository manualRepository;
 
         public UserController()
         {
             userRepository = new UserRepository(new ApplicationDbContext());
-        }
+         
+    }
 
         public ActionResult Index()
         {
@@ -37,6 +40,14 @@ namespace Manuals.Controllers
             var currentUserId = User.Identity.GetUserId();
             ApplicationUser userProfile = userRepository.GetById(currentUserId);
             return View(userProfile);
+        }
+
+        [HttpGet]
+        public ActionResult GetUserManuals(string ID)
+        {
+    
+            IEnumerable<ManualViewModel> manuals = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll().Where(X=>X.UserId==ID));
+            return Json(manuals, JsonRequestBehavior.AllowGet);
         }
     }
 }

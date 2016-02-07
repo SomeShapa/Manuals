@@ -22,5 +22,9 @@
   {
     "outputFile": "Scripts/Custom/ThemeController.js",
     "inputFile": "Scripts/Custom/ThemeController.coffee"
+  },
+  {
+    "outputFile": "Scripts/Custom/ProfileController.js",
+    "inputFile": "Scripts/Custom/ProfileController.coffee"
   }
 ]

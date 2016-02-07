@@ -8,7 +8,22 @@
 <h2>View Profile</h2>
 
 <p>@Model.Email</p>
-@if (Model.Id == User.Identity.GetUserId())
+@*@if (Model.Id == User.Identity.GetUserId())
 {
     @Html.ActionLink("Edit","EditUserProfile")
-}
+}*@
+
+
+<div ng-controller="ProfileController">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-2">
+            <div ng-repeat="Manual in Manuals">
+                <div class="well">
+                    <h4>{{Manual.Id}}. {{Manual.Name}}</h4>
+                    <h5>Author: {{Manual.User.Email}}</h5>
+                    <h5>{{Manual.Category.Name}} <span ng-repeat="tag in Manual.Tags">{{tag.Name}}</span></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
