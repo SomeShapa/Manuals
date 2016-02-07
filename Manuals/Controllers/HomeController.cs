@@ -13,7 +13,6 @@ using Manuals.Entities;
 
 namespace Manuals.Controllers
 {
-    [Authorize]
     [Culture]
     public class HomeController : Controller
     {
@@ -42,10 +41,10 @@ namespace Manuals.Controllers
             return Json(manuals, JsonRequestBehavior.AllowGet);
         }
 
+        [Authorize]
         public ActionResult CreateNewManual(string ReturnUrl)
         {
             ManualViewModel model = new ManualViewModel();
-            ViewBag.Categories = GetCategoriesAsSelectList();
             ViewBag.ReturnUrl = ReturnUrl;
             return View(model);
         }
@@ -109,11 +108,6 @@ namespace Manuals.Controllers
             tagRepository.Add(Mapper.Map<Tag>(newTag));
             tagRepository.Save();
             return Mapper.Map<TagViewModel>(newTag);
-        }
-
-        private SelectList GetCategoriesAsSelectList()
-        {
-            return new SelectList(categoryRepository.GetAll(), "Id", "Name");
         }
     }
 }

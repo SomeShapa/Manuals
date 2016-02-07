@@ -32,11 +32,10 @@ namespace Manuals.Controllers
             return View(model);
         }
 
-        public ActionResult EditUserProfile()
+        public ActionResult EditUserProfile(string userId)
         {
-            var currentUserId = User.Identity.GetUserId();
-            ApplicationUser userProfile = userRepository.GetById(currentUserId);
-            return View(userProfile);
+            ApplicationUser user = userRepository.GetById(userId);
+            return View(user);
         }
     }
 }

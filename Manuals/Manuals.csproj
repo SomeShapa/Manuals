@@ -198,14 +198,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\AutoMapperConfiguration.cs" />
-    <Compile Include="Migrations\201602070729033_InitialCreate.cs" />
-    <Compile Include="Migrations\201602070729033_InitialCreate.Designer.cs">
-      <DependentUpon>201602070729033_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602070732337_add tables.cs" />
-    <Compile Include="Migrations\201602070732337_add tables.Designer.cs">
-      <DependentUpon>201602070732337_add tables.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
@@ -1125,12 +1117,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602070729033_InitialCreate.resx">
-      <DependentUpon>201602070729033_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602070732337_add tables.resx">
-      <DependentUpon>201602070732337_add tables.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.resx" />
     <EmbeddedResource Include="Resources\Resource.ru.resx" />
   </ItemGroup>

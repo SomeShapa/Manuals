@@ -1,30 +1,34 @@
 ﻿@using Microsoft.AspNet.Identity
 
-@if (Request.IsAuthenticated)
-{
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+<div  ng-controller="LangController">
+    @if (Request.IsAuthenticated)
     {
-    @Html.AntiForgeryToken()
-
-    <ul class="nav navbar-nav navbar-right" ng-controller="LangController">
-        <li>
-            @Html.ActionLink("My Profile", "ViewUserProfile", "User", routeValues: new { Id = User.Identity.GetUserId() }, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">@Resources.Resource.LogOff</a></li>
-        @if (User.IsInRole("Admin"))
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
         {
-            <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
-        }
-        <li><button type="button" class="btn btn-default" ng-click="ChangeCulture('ru')">Ru</button></li>
-        <li><button type="button" class="btn btn-default" ng-click="ChangeCulture('en')">En</button></li>
+            @Html.AntiForgeryToken()
 
-    </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    @Html.ActionLink("My Profile", "ViewUserProfile", "User", routeValues: new { Id = User.Identity.GetUserId() }, htmlAttributes: new { title = "Manage" })
+                </li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">@Resources.Resource.LogOff</a></li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                }
+                <li><button type="button" class="btn navbar-btn" ng-click="ChangeCulture('ru')">Ru</button></li>
+                <li><button type="button" class="btn navbar-btn" ng-click="ChangeCulture('en')">En</button></li>
+
+            </ul>
+        }
     }
-}
-else
-{
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+            <li><button type="button" class="btn navbar-btn" ng-click="ChangeCulture('ru')">Ru</button></li>
+            <li><button type="button" class="btn navbar-btn" ng-click="ChangeCulture('en')">En</button></li>
+        </ul>
+    }
+</div>

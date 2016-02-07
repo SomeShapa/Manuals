@@ -1,25 +1,15 @@
 ﻿@model Manuals.Models.ApplicationUser
-
+@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "EditUserProfile";
 }
 
-<h2>EditUserProfile</h2>
-
+<h2>Edit User Profile</h2>
+@Html.HiddenFor(m => m.Id)
 <h4>@Model.Email</h4>
-
-@Html.ActionLink("Change Password", "ChangePassword", "Manage")
-@using (Html.BeginForm("ChangeCulture", "Language"))
+@if (Model.Id == User.Identity.GetUserId())
 {
-    <select name="lang">
-        <option value="ru">Русский</option>
-        <option value="en">English</option>
-    </select>
-    <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+    @Html.ActionLink("Change Password", "ChangePassword", "Manage")
 }
 
 
-<div>
-    <button class="btn" ng-click="Theme='DarkTheme'; NavbarTheme='navbar-inverse';"></button>
-    <button class="btn" ng-click="Theme=''; NavbarTheme='';"></button>
-</div>

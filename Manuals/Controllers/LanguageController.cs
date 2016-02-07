@@ -27,30 +27,42 @@ namespace Manuals.Controllers
         [HttpPost]
         public ActionResult ChangeCulture(string lang)
         {
-            string UserId = User.Identity.GetUserId();
-            ApplicationUser user = userRepository.GetById(UserId);
             List<string> cultures = new List<string>() { "ru", "en" };
             if (!cultures.Contains(lang))
             {
                 lang = "en";
             }
-            user.Language = lang;
-            userRepository.Update(user);
-            userRepository.Save();
-            // Сохраняем выбранную культуру в куки
-            //HttpCookie cookie = Request.Cookies["lang"];
-            //if (cookie != null)
-            //    cookie.Value = lang;   // если куки уже установлено, то обновляем значение
-            //else
-            //{
+            SetLangFromCookie(lang);
+            //SetLangFromDB(lang);
 
-            //    cookie = new HttpCookie("lang");
-            //    cookie.HttpOnly = false;
-            //    cookie.Value = lang;
-            //    cookie.Expires = DateTime.Now.AddYears(1);
-            //}
-            //Response.Cookies.Add(cookie);
             return Json(new { result = "Refresh" }, JsonRequestBehavior.AllowGet);
+        }
+
+        private void SetLangFromDB(string lang)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                string UserId = User.Identity.GetUserId();
+                ApplicationUser user = userRepository.GetById(UserId);
+                user.Language = lang;
+                userRepository.Update(user);
+                userRepository.Save();
+            }
+        }
+
+        private void SetLangFromCookie(string lang)
+        {
+            HttpCookie cookie = Request.Cookies["lang"];
+            if (cookie != null)
+                cookie.Value = lang;
+            else
+            {
+                cookie = new HttpCookie("lang");
+                cookie.HttpOnly = false;
+                cookie.Value = lang;
+                cookie.Expires = DateTime.Now.AddYears(1);
+            }
+            Response.Cookies.Add(cookie);
         }
     }
 }
