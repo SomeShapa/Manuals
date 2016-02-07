@@ -35,8 +35,6 @@ namespace Manuals.Controllers
         [HttpPost]
         public ActionResult DeleteUser(string Id)
         {
-            authContext.Users.Remove(authContext.Users.First(x => (x.Id == Id)));
-            authContext.SaveChangesAsync();
             userRepository.Delete(Id);
             return Json(new { success = true, Id = Id });
         }

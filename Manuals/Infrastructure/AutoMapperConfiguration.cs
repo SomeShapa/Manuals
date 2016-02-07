@@ -31,7 +31,7 @@ namespace Manuals.Infrastructure
 
             Mapper.CreateMap<ApplicationUser, ApplicationUser>()
                 .ForMember(d => d.Manuals, opt => opt.Ignore());
-            Mapper.CreateMap<UserViewModel, ApplicationUser>();
+            //Mapper.CreateMap<UserViewModel, ApplicationUser>();
 
         }
     }
