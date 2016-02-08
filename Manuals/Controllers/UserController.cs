@@ -21,8 +21,8 @@ namespace Manuals.Controllers
         public UserController()
         {
             userRepository = new UserRepository(new ApplicationDbContext());
-         
-    }
+            manualRepository = new ManualRepository(new ApplicationDbContext());
+        }
 
         public ActionResult Index()
         {
@@ -57,11 +57,10 @@ namespace Manuals.Controllers
             return Json(new { result = "Redirect", url = returnUrl });
         }
 
-        [HttpGet]
-        public ActionResult GetUserManuals(string ID)
+        [HttpPost]
+        public ActionResult GetManualsByUserId(string Id)
         {
-    
-            IEnumerable<ManualViewModel> manuals = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll().Where(X=>X.UserId==ID));
+            IEnumerable<ManualViewModel> manuals = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll().Where(X => X.UserId == Id));
             return Json(manuals, JsonRequestBehavior.AllowGet);
         }
     }

@@ -3,15 +3,27 @@
   Application.controller('ProfileController', [
     '$scope', '$http', function($scope, $http) {
       $scope.Manuals = [];
-      $http({
-        method: 'POST',
-        url: '/User/GetManualsByUserId',
-        data: {
-          userId: $scope.userId
-        }
-      }).success(function(data) {
-        $scope.Manuals = data;
-      });
+      $scope.User = {};
+      $scope.GetManuals = function() {
+        $http({
+          method: 'POST',
+          url: '/User/GetManualsByUserId',
+          data: {
+            Id: $scope.Id
+          }
+        }).success(function(data) {
+          $scope.Manuals = data;
+        });
+        return $http({
+          method: 'POST',
+          url: '/User/GetUserById',
+          data: {
+            Id: $scope.Id
+          }
+        }).success(function(data) {
+          $scope.User = data;
+        });
+      };
     }
   ]);
 

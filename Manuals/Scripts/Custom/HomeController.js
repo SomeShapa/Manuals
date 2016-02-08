@@ -9,6 +9,18 @@
       }).success(function(data) {
         $scope.Manuals = data;
       });
+      $scope.ChangeRating = function(manual, liked) {
+        $http({
+          method: 'POST',
+          url: '/Home/ChangeRating',
+          data: {
+            manual: manual,
+            liked: liked
+          }
+        }).success(function(data) {
+          manual.Rating = data.newRating;
+        });
+      };
     }
   ]);
 

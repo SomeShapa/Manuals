@@ -5,12 +5,22 @@
 <div ng-controller="HomeController">
     <div class="row">
         <div class="col-md-6 col-md-offset-2">
-            <div ng-repeat="Manual in Manuals | orderBy: DateAdded">
+            <div ng-repeat="Manual in Manuals | orderBy: '-Id'">
                 <div class="well">
-                    <h4>{{Manual.Id}}. {{Manual.Name}}</h4>
-                    <h5>Author: {{Manual.User.Email}}</h5>
-                    {{Manual.DateAdded}}
-                    <h5>{{Manual.Category.Name}} <span ng-repeat="tag in Manual.Tags">{{tag.Name}} </span></h5>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="btn-group-vertical pull-left">
+                                <button class="btn btn-primary" ng-click="ChangeRating(Manual,true)">Up</button>
+                                <div class="btn btn-default disabled" id="rating">{{Manual.Rating}}</div>
+                                <button class="btn btn-danger" ng-click="ChangeRating(Manual,false)">Down</button>
+                            </div>
+                        </div>
+                        <div class="col-md-10">
+                            <h4>{{Manual.Name}}</h4>
+                            Author: {{Manual.User.Email}}</a>
+                            <h5>{{Manual.Category.Name}} <span ng-repeat="tag in Manual.Tags">{{tag.Name}} </span></h5>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

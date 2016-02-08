@@ -7,8 +7,8 @@
 <div ng-controller="EditUserController">
     <h2>Edit User Profile</h2>
     @*@Html.HiddenFor(m => m.Id, new { ng_model = "Id", ng_ ="" })*@
-    <input type="hidden" ng-model="Id" value="@Model.Id"/>
-    <input type="hidden" ng-model="returnUrl" value="@ViewBag.ReturnUrl" />
+    <input type="hidden" ng-model="Id" value="@Model.Id" />
+    <input type="hidden" ng-model="returnUrl" value="@ViewBag.ReturnUrl" ng-init="GetUser()"/>
     <h4>@Model.Email</h4>
     @if (Model.Id == User.Identity.GetUserId())
     {

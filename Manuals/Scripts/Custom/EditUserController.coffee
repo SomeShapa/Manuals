@@ -36,7 +36,5 @@ Application.directive 'input', ($parse) ->
       if attrs.ngModel
         val = attrs.value or element.text()
         $parse(attrs.ngModel).assign scope, val
-        scope.GetUser()
       return
-
   }

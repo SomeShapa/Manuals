@@ -46,7 +46,6 @@
         if (attrs.ngModel) {
           val = attrs.value || element.text();
           $parse(attrs.ngModel).assign(scope, val);
-          scope.GetUser();
         }
       }
     };

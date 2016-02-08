@@ -20,6 +20,7 @@ namespace Manuals.Controllers
         private readonly ManualRepository manualRepository;
         private readonly CategoryRepository categoryRepository;
         private readonly TagRepository tagRepository;
+        private readonly RatingRepository ratingRepository;
 
         public HomeController()
         {
@@ -27,6 +28,7 @@ namespace Manuals.Controllers
             manualRepository = new ManualRepository(new ApplicationDbContext());
             categoryRepository = new CategoryRepository(new ApplicationDbContext());
             tagRepository = new TagRepository(new ApplicationDbContext());
+            ratingRepository = new RatingRepository(new ApplicationDbContext());
         }
 
         public ActionResult Index()
@@ -95,6 +97,50 @@ namespace Manuals.Controllers
                 .Distinct()
                 .ToList();
             return Json(tags, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult ChangeRating(ManualViewModel manual, bool liked)
+        {
+            string currentUserId = User.Identity.GetUserId();
+            CalculateRating(manual,currentUserId, liked);
+            int rating = GetRating(manual.Id);
+            return Json(new { newRating = rating });
+        }
+
+        private void CalculateRating(ManualViewModel manual,string userId, bool liked)
+        {
+            Rating rating = ratingRepository.GetAll()
+                .FirstOrDefault(e => e.UserId == userId && e.ManualId == manual.Id);
+            if (rating == null)
+            {
+                ratingRepository.Add(new Rating
+                {
+                    ManualId = manual.Id,
+                    UserId = userId,
+                    Liked = liked
+                });
+            }
+            else if (rating.Liked != liked)
+            {
+                if (rating.Liked == null)
+                {
+                    rating.Liked = liked;
+                }
+                else
+                {
+                    rating.Liked = null;
+                }
+                ratingRepository.Update(rating);
+            }
+            ratingRepository.Save();
+
+        }
+
+        private int GetRating(int manualId)
+        {
+            var ratings = manualRepository.GetById(manualId).Ratings;
+            return (ratings.Count(e => e.Liked == true) - ratings.Count(e => e.Liked == false));
         }
 
         private TagViewModel CreateOrGetTag(string tagName)

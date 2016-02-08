@@ -219,6 +219,7 @@
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\ManualRepository.cs" />
+    <Compile Include="Repositories\RatingRepository.cs" />
     <Compile Include="Repositories\TagRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -301,6 +302,18 @@
     <Content Include="Scripts\Custom\ProfileController.min.js">
       <DependentUpon>ProfileController.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\Custom\RatingFactory.js">
+      <DependentUpon>RatingFactory.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Custom\RatingFactory.min.js">
+      <DependentUpon>RatingFactory.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Custom\RatingManualsFactory.js">
+      <DependentUpon>RatingFactory.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Custom\RatingManualsFactory.min.js">
+      <DependentUpon>RatingManualsFactory.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\Custom\TagCloud.js" />
     <Content Include="Scripts\Custom\TestController.js">
       <DependentUpon>TestController.coffee</DependentUpon>
@@ -343,6 +356,7 @@
     <Content Include="Scripts\Custom\ThemeController.coffee" />
     <Content Include="Scripts\Custom\EditUserController.coffee" />
     <Content Include="Scripts\Custom\ProfileController.coffee" />
+    <Content Include="Scripts\Custom\RatingFactory.coffee" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />

@@ -4,18 +4,18 @@
 @{
     ViewBag.Title = "View Profile";
 }
-
-<h2>View Profile</h2>
-
-<p>@Model.Email</p>
-@if (User.IsInRole("Admin") || Model.Id == User.Identity.GetUserId())
-{
-    @Html.ActionLink("Edit","EditUserProfile")
-}
-
-
 <div ng-controller="ProfileController">
     <div class="row">
+        <div class="col-md-2">
+            <h2>View Profile</h2>
+            <input type="hidden" ng-model="Id" value="@Model.Id" />
+            <p ng-init="GetManuals()">@Model.Email</p>
+            {{User.Email}}
+            @if (User.IsInRole("Admin") || Model.Id == User.Identity.GetUserId())
+            {
+                @Html.ActionLink("Edit", "EditUserProfile", "User", new { userId = Model.Id, returnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-default" })
+            }
+        </div>
         <div class="col-md-6 col-md-offset-2">
             <div ng-repeat="Manual in Manuals">
                 <div class="well">
@@ -27,5 +27,3 @@
         </div>
     </div>
 </div>
-    @Html.ActionLink("Edit", "EditUserProfile", "User", new { userId = Model.Id, returnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-default" })
-}

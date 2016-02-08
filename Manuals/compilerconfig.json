@@ -30,5 +30,13 @@
   {
     "outputFile": "Scripts/Custom/ProfileController.js",
     "inputFile": "Scripts/Custom/ProfileController.coffee"
+  },
+  {
+    "outputFile": "Scripts/Custom/RatingManualsFactory.js",
+    "inputFile": "Scripts/Custom/RatingManualsFactory.coffee"
+  },
+  {
+    "outputFile": "Scripts/Custom/RatingFactory.js",
+    "inputFile": "Scripts/Custom/RatingFactory.coffee"
   }
 ]
