@@ -5,7 +5,7 @@
       $scope.Manuals = [];
       $scope.User = {};
       $scope.GetManuals = function() {
-        $http({
+        return $http({
           method: 'POST',
           url: '/User/GetManualsByUserId',
           data: {
@@ -13,15 +13,6 @@
           }
         }).success(function(data) {
           $scope.Manuals = data;
-        });
-        return $http({
-          method: 'POST',
-          url: '/User/GetUserById',
-          data: {
-            Id: $scope.Id
-          }
-        }).success(function(data) {
-          $scope.User = data;
         });
       };
     }

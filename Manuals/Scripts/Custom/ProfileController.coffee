@@ -1,6 +1,6 @@
 ﻿# CoffeeScript
 
-  Application.controller 'ProfileController', [
+Application.controller 'ProfileController', [
     '$scope'
     '$http'
     ($scope, $http) ->
@@ -13,11 +13,6 @@
                 data: Id: $scope.Id ).success (data) ->
                 $scope.Manuals = data
                 return
-            $http(
-                method: 'POST',
-                url: '/User/GetUserById',
-                data: Id: $scope.Id ).success (data) ->
-                $scope.User = data
-                return
+
         return
-  ]
+]

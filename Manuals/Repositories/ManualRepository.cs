@@ -44,7 +44,7 @@ namespace Manuals.Repositories
 
         public void Save()
         {
-            context.SaveChangesAsync();
+            context.SaveChanges();
         }
 
         public void Update(Manual item)
