@@ -21,6 +21,13 @@
           manual.Rating = data.newRating;
         });
       };
+      $scope.Tags = [];
+      $http({
+        method: 'GET',
+        url: '/Home/GetTags'
+      }).success(function(data) {
+        $scope.Tags = data;
+      });
     }
   ]);
 
