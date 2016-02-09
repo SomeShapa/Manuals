@@ -6,7 +6,7 @@
 
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    @*@Scripts.Render("~/bundles/modernizr")*@
+    @Scripts.Render("~/bundles/modernizr")
     
 </head>
 <body ng-app="Manuals" class="ng-class:Theme" ng-controller="ThemeController">
@@ -38,6 +38,10 @@
                 <div>
                     @Html.ActionLink("Edit Profile", "EditUserProfile", "User", null, new { @class = "btn btn-default" })
                 </div>
+                <div>
+                    <button class="btn" ng-click="Theme='DarkTheme'; SaveTheme('DarkTheme');"></button>
+                    <button class="btn" ng-click="Theme=''; SaveTheme('');"></button>
+                </div>
             </div>
         }
 
@@ -62,6 +66,7 @@
     <script src="~/Scripts/Custom/RatingFactory.js"></script>
     <script src="~/Scripts/Custom/HomeController.js"></script>
     <script src="~/Scripts/Custom/AdminController.js"></script>
+    <script src="~/Scripts/Custom/ThemeController.js"></script>
     <script src="~/Scripts/Custom/AddNewManualController.js"></script>
     <script src="~/Scripts/Custom/LangController.js"></script>
     <script src="~/Scripts/Custom/AutocompleteTag.js"></script>

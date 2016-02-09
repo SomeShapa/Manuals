@@ -7,7 +7,7 @@ Application.controller 'EditUserController', [
             $http(
                 method: 'POST'
                 url: '/Language/SaveTheme'
-                data: User).success (data) ->
+                data:{ theme: Theme }).success (data) ->
             return
 
         $scope.SaveUser = ->

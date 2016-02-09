@@ -21,6 +21,7 @@ namespace Manuals.Controllers
         private readonly CategoryRepository categoryRepository;
         private readonly TagRepository tagRepository;
         private readonly RatingRepository ratingRepository;
+        private readonly TemplatesRepository templatesRepository;
 
         public HomeController()
         {
@@ -29,6 +30,7 @@ namespace Manuals.Controllers
             categoryRepository = new CategoryRepository(new ApplicationDbContext());
             tagRepository = new TagRepository(new ApplicationDbContext());
             ratingRepository = new RatingRepository(new ApplicationDbContext());
+            templatesRepository = new TemplatesRepository(new ApplicationDbContext());
         }
 
         public ActionResult Index()
@@ -73,6 +75,13 @@ namespace Manuals.Controllers
         {
             IEnumerable<CategoryViewModel> categories = Mapper.Map<List<CategoryViewModel>>(categoryRepository.GetAll());
             return Json(categories, JsonRequestBehavior.AllowGet);
+        }
+        
+        [HttpGet]
+        public ActionResult GetTemplates()
+        {
+            IEnumerable<TemplateViewModel> templates = Mapper.Map<List<TemplateViewModel>>(templatesRepository.GetAll());
+            return Json(templates, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

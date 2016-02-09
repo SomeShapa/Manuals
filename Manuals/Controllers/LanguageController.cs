@@ -84,6 +84,7 @@ namespace Manuals.Controllers
             user.Theme = theme;
             userRepository.Update(user);
             userRepository.Save();
+            
             return Json(theme);
         }
 

@@ -4,6 +4,7 @@ Application.controller 'AddNewManualController', [
     '$http'
     ($scope, $http) ->
         $scope.Categories = []
+        $scope.Templates = []
         $scope.NewManual = { Tags: [] };
         $scope.Tags = [];
         $http(
@@ -11,6 +12,12 @@ Application.controller 'AddNewManualController', [
             url: '/Home/GetCategories').success (data) ->
             $scope.Categories = data
             $scope.NewManual.CategoryId = $scope.Categories[0].Id
+            return
+        $http(
+            method: 'GET',
+            url: '/Home/GetTemplates').success (data) ->
+            $scope.Templates = data
+            $scope.NewManual.TemplateId = $scope.Templates[0].Id
             return
         $http(
             method: 'GET',

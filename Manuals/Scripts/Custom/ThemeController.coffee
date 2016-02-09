@@ -6,6 +6,14 @@
       method: 'GET'
       url: '/Language/GetTheme').success (data) ->
       $scope.Theme = data.result
+      
       return
+
+    $scope.SaveTheme = (Theme) ->
+        $http(
+            method: 'POST'
+            url: '/Language/SaveTheme'
+            data:{ theme: Theme }).success (data) ->
+            return
     return
 ]# CoffeeScript

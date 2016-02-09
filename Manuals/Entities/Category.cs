@@ -11,7 +11,7 @@ namespace Manuals.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
         {
-            Manauls = new HashSet<Manual>();
+            Manuals = new HashSet<Manual>();
         }
 
         public int Id { get; set; }
@@ -21,6 +21,6 @@ namespace Manuals.Entities
         public string Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Manual> Manauls { get; set; }
+        public virtual ICollection<Manual> Manuals { get; set; }
     }
 }

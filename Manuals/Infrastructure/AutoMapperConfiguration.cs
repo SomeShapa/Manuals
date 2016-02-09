@@ -21,6 +21,7 @@ namespace Manuals.Infrastructure
             Mapper.CreateMap<ManualViewModel, Manual>();
 
             Mapper.CreateMap<Category, CategoryViewModel>();
+            Mapper.CreateMap<Template, TemplateViewModel>();
             Mapper.CreateMap<CategoryViewModel, Category>();
 
             Mapper.CreateMap<Comment, CommentViewModel>().

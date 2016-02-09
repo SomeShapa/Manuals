@@ -24,17 +24,24 @@ namespace Manuals.Models
 
         public int CategoryId { get; set; }
 
-        public string ImageLink { get; set; }
+        public string ImageLink1 { get; set; }
+        public string ImageLink2 { get; set; }
+        public string ImageLink3 { get; set; }
+        public string ImageLink4 { get; set; }
 
         public string VideoLink { get; set; }
 
+      
+
         [Required]
         [DataType(DataType.MultilineText)]
-        public string Body { get; set; }
-
+        public List<string> Body { get; set; }
+        
         public int Rating { get; set; }
 
         public virtual CategoryViewModel Category { get; set; }
+
+        public virtual TemplateViewModel Template { get; set; }
 
         public virtual ApplicationUser User { get; set; }
 

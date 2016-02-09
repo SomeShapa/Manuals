@@ -56,6 +56,7 @@ namespace Manuals.Models
         public virtual DbSet<RatingComment> RatingComments { get; set; }
         public virtual DbSet<Rating> Ratings { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<Template> Templates { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -66,8 +67,17 @@ namespace Manuals.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Category>()
-                .HasMany(e => e.Manauls)
+                .HasMany(e => e.Manuals)
                 .WithRequired(e => e.Category)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Template>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Template>()
+                .HasMany(e => e.Manuals)
+                .WithRequired(e => e.Template)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Comment>()
@@ -88,16 +98,19 @@ namespace Manuals.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Manual>()
-                .Property(e => e.ImageLink)
+                .Property(e => e.ImageLink1)
+                .IsUnicode(false);
+            modelBuilder.Entity<Manual>()
+                .Property(e => e.ImageLink2)
+                .IsUnicode(false);
+            modelBuilder.Entity<Manual>()
+                .Property(e => e.ImageLink3)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Manual>()
                 .Property(e => e.VideoLink)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Manual>()
-                .Property(e => e.Body)
-                .IsUnicode(false);
+            
 
             modelBuilder.Entity<Manual>()
                 .HasMany(e => e.Comments)

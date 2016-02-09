@@ -6,7 +6,9 @@
         $http({
           method: 'POST',
           url: '/Language/SaveTheme',
-          data: User
+          data: {
+            theme: Theme
+          }
         }).success(function(data) {});
       };
       $scope.SaveUser = function() {

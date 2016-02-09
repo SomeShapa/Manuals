@@ -3,6 +3,7 @@
   Application.controller('AddNewManualController', [
     '$scope', '$http', function($scope, $http) {
       $scope.Categories = [];
+      $scope.Templates = [];
       $scope.NewManual = {
         Tags: []
       };
@@ -13,6 +14,13 @@
       }).success(function(data) {
         $scope.Categories = data;
         $scope.NewManual.CategoryId = $scope.Categories[0].Id;
+      });
+      $http({
+        method: 'GET',
+        url: '/Home/GetTemplates'
+      }).success(function(data) {
+        $scope.Templates = data;
+        $scope.NewManual.TemplateId = $scope.Templates[0].Id;
       });
       $http({
         method: 'GET',
