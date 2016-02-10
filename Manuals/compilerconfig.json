@@ -38,5 +38,9 @@
   {
     "outputFile": "Scripts/Custom/RatingFactory.js",
     "inputFile": "Scripts/Custom/RatingFactory.coffee"
+  },
+  {
+    "outputFile": "Scripts/Custom/CommentController.js",
+    "inputFile": "Scripts/Custom/CommentController.coffee"
   }
 ]

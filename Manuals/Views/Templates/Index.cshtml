@@ -5,3 +5,30 @@
 
 <h2>Index</h2>
 @ViewBag.Text
+
+
+<div ng-controller="CommentController">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-2">
+            <div ng-repeat="Comment in Comments | orderBy: '-Id'">
+                <div class="well" @*ng-click="OpenManual(Manual.Id, Manual.Template.Name)"*@>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="btn-group-vertical pull-left">
+                                <button class="btn btn-primary" ng-click="ChangeCommentRating(Comment,true)">Up</button>
+                                <div class="btn btn-default disabled" id="rating">{{Comment.Rating}}</div>
+                                <button class="btn btn-danger" ng-click="ChangeCommentRating(Comment,false)">Down</button>
+                            </div>
+                        </div>
+                        <div class="col-md-10">
+                            {{Comment.Description}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* TODO: Comment adding! *@

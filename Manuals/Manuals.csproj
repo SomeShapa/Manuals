@@ -212,8 +212,10 @@
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\CommentRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\ManualRepository.cs" />
+    <Compile Include="Repositories\RatingCommentRepository.cs" />
     <Compile Include="Repositories\RatingRepository.cs" />
     <Compile Include="Repositories\TagRepository.cs" />
     <Compile Include="Repositories\TemplatesRepository.cs" />
@@ -275,11 +277,23 @@
     <Content Include="Scripts\Custom\AutocompleteTag.min.js">
       <DependentUpon>AutocompleteTag.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\Custom\CommentController.js">
+      <DependentUpon>CommentController.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Custom\CommentController.min.js">
+      <DependentUpon>CommentController.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\Custom\EditUserController.js">
       <DependentUpon>EditUserController.coffee</DependentUpon>
     </Content>
     <Content Include="Scripts\Custom\EditUserController.min.js">
       <DependentUpon>EditUserController.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Custom\HomeController - Copy.js">
+      <DependentUpon>CommentController.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Custom\HomeController - Copy.min.js">
+      <DependentUpon>HomeController - Copy.js</DependentUpon>
     </Content>
     <Content Include="Scripts\Custom\HomeController.js">
       <DependentUpon>HomeController.coffee</DependentUpon>
@@ -355,6 +369,7 @@
     <Content Include="Scripts\Custom\EditUserController.coffee" />
     <Content Include="Scripts\Custom\ProfileController.coffee" />
     <Content Include="Scripts\Custom\RatingFactory.coffee" />
+    <Content Include="Scripts\Custom\CommentController.coffee" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />

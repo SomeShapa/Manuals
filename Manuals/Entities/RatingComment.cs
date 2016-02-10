@@ -16,6 +16,8 @@ namespace Manuals.Entities
 
         public int Id { get; set; }
 
+        public bool? Liked { get; set; }
+
         public virtual Comment Comment { get; set; }
     }
 }
