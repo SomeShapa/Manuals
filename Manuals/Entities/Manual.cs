@@ -44,7 +44,7 @@ namespace Manuals.Entities
         public string VideoLink { get; set; }
 
         [Required]
-        public List<string> Body { get; set; }
+        public string Body { get; set; }
 
         public virtual Category Category { get; set; }
 

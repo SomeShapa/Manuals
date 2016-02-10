@@ -38,7 +38,7 @@
                         <option ng-repeat="category in Categories" value="{{category.Id}}">{{category.Name}}</option>
                     </select>
                 </div>
-                @Html.LabelFor(e => e.Template.Id, new { @class = "col-md-2 control-label" })
+                @Html.LabelFor(e => e.TemplateId, new { @class = "col-md-2 control-label" })
                 <div class="col-md-10">
                     <select ng-model="NewManual.TemplateId" id="TemplateId" name="TemplateId" class="btn btn-default">
                         <option ng-repeat="Template in Templates" value="{{Template.Id}}">{{Template.Name}}</option>

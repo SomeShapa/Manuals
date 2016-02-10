@@ -23,6 +23,7 @@ namespace Manuals.Models
         public DateTime DateAdded { get; set; }
 
         public int CategoryId { get; set; }
+        public int TemplateId { get; set; }
 
         public string ImageLink1 { get; set; }
         public string ImageLink2 { get; set; }
@@ -35,7 +36,7 @@ namespace Manuals.Models
 
         [Required]
         [DataType(DataType.MultilineText)]
-        public List<string> Body { get; set; }
+        public string Body { get; set; }
         
         public int Rating { get; set; }
 

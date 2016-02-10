@@ -23,6 +23,7 @@ namespace Manuals.Infrastructure
             Mapper.CreateMap<Category, CategoryViewModel>();
             Mapper.CreateMap<Template, TemplateViewModel>();
             Mapper.CreateMap<CategoryViewModel, Category>();
+            Mapper.CreateMap<TemplateViewModel, Template>();
 
             Mapper.CreateMap<Comment, CommentViewModel>().
                 ForMember(d => d.Rating, s => s.MapFrom(e => (e.RatingComments.Count())));

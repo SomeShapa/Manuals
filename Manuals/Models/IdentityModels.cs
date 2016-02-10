@@ -110,7 +110,10 @@ namespace Manuals.Models
             modelBuilder.Entity<Manual>()
                 .Property(e => e.VideoLink)
                 .IsUnicode(false);
-            
+
+            modelBuilder.Entity<Manual>()
+                .Property(e => e.Body)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Manual>()
                 .HasMany(e => e.Comments)
