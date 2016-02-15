@@ -25,8 +25,7 @@ namespace Manuals.Infrastructure
             Mapper.CreateMap<CategoryViewModel, Category>();
             Mapper.CreateMap<TemplateViewModel, Template>();
 
-            Mapper.CreateMap<Comment, CommentViewModel>().
-                ForMember(d => d.Rating, s => s.MapFrom(e => (e.RatingComments.Count())));
+            Mapper.CreateMap<Comment, CommentViewModel>();
             Mapper.CreateMap<CommentViewModel, Comment>();
 
             Mapper.CreateMap<Tag, TagViewModel>();

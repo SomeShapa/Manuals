@@ -1,4 +1,4 @@
-﻿
+﻿@model Manuals.Models.CommentViewModel
 @{
     ViewBag.Title = "Index";
 }
@@ -22,13 +22,34 @@
                         </div>
                         <div class="col-md-10">
                             {{Comment.Description}}
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div ng-init="NewComment.ManualId=@ViewBag.Manual"></div>
+        <div class="form-horizontal">           
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", ng_model = "NewComment.Description" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            {{NewComment.ManualId}}
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="button" class="btn btn-default" ng-click="Create(NewComment)">Create</button>
+                </div>
+            </div>
+        </div>
+    }
 </div>
-
-
-@* TODO: Comment adding! *@

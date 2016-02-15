@@ -289,12 +289,6 @@
     <Content Include="Scripts\Custom\EditUserController.min.js">
       <DependentUpon>EditUserController.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\Custom\HomeController - Copy.js">
-      <DependentUpon>CommentController.coffee</DependentUpon>
-    </Content>
-    <Content Include="Scripts\Custom\HomeController - Copy.min.js">
-      <DependentUpon>HomeController - Copy.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\Custom\HomeController.js">
       <DependentUpon>HomeController.coffee</DependentUpon>
     </Content>
