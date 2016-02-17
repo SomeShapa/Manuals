@@ -6,10 +6,29 @@
 <h2>Index</h2>
 @ViewBag.Text
 
-
+<hr>
 <div ng-controller="CommentController">
     <div class="row">
         <div class="col-md-6 col-md-offset-2">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div ng-init="NewComment.ManualId=@ViewBag.Manual;"></div>
+                <div class="form-horizontal">
+
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="input-group col-md-push-1 col-md-10">
+                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", ng_model = "NewComment.Description" } })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="Create(NewComment)">New comment</button>
+                            </span>
+                         </div>
+                    </div>
+                </div>}
+
+
             <div ng-repeat="Comment in Comments | orderBy: '-Id'">
                 <div class="well" @*ng-click="OpenManual(Manual.Id, Manual.Template.Name)"*@>
                     <div class="row">
@@ -22,34 +41,10 @@
                         </div>
                         <div class="col-md-10">
                             {{Comment.Description}}
-                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        <div ng-init="NewComment.ManualId=@ViewBag.Manual"></div>
-        <div class="form-horizontal">           
-            <div class="form-group">
-                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", ng_model = "NewComment.Description" } })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            {{NewComment.ManualId}}
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <button type="button" class="btn btn-default" ng-click="Create(NewComment)">Create</button>
-                </div>
-            </div>
-        </div>
-    }
 </div>

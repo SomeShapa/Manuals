@@ -2,14 +2,20 @@
 (function() {
   Application.controller('CommentController', [
     '$scope', '$http', function($scope, $http) {
+      var timerLoad, timerUpdate;
       $scope.Comments = [];
       $scope.NewComment = {};
-      $http({
-        method: 'GET',
-        url: '/Templates/GetComments'
-      }).success(function(data) {
-        $scope.Comments = data;
-      });
+      $scope.GetComments = function() {
+        $http({
+          method: 'POST',
+          url: '/Templates/GetComments',
+          data: {
+            manualId: $scope.NewComment.ManualId
+          }
+        }).success(function(data) {
+          $scope.Comments = data;
+        });
+      };
       $scope.Create = function(comment) {
         $http({
           method: 'POST',
@@ -18,13 +24,13 @@
             model: comment
           }
         }).success(function(data) {
-          $scope.Comments.add(comment);
+          $scope.GetComments();
         });
       };
-      $scope.ChangeRating = function(comment, liked) {
+      $scope.ChangeCommentRating = function(comment, liked) {
         $http({
           method: 'POST',
-          url: '/Template/ChangeCommentRating',
+          url: '/Templates/ChangeCommentRating',
           data: {
             comment: comment,
             liked: liked
@@ -33,9 +39,13 @@
           comment.Rating = data.newRating;
         });
       };
+      timerUpdate = setInterval((function() {
+        $scope.GetComments();
+      }), 5000);
+      timerLoad = setTimeout((function() {
+        $scope.GetComments();
+      }), 100);
     }
   ]);
-
-  return;
 
 }).call(this);

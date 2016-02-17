@@ -13,19 +13,20 @@ namespace Manuals.Entities
         {
             RatingComments = new HashSet<RatingComment>();
         }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        
         public int Id { get; set; }
 
         [Required]
         [StringLength(128)]
         public string UserId { get; set; }
 
+        [DataType(DataType.MultilineText)]
         [Required]
         public string Description { get; set; }
 
         public int ManualId { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual Manual Manual { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

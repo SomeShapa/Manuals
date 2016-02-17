@@ -29,11 +29,21 @@
         }).success(function(data) {
           $scope.words = [];
           angular.forEach(data, function(item) {
-            $scope.words.push({
-              text: item.Name,
-              weight: 1,
-              link: 'http://google.com'
+            var flag;
+            flag = true;
+            angular.forEach($scope.words, function(word) {
+              if (word.text === item.Name) {
+                word.weight += 1;
+                return flag = false;
+              }
             });
+            if (flag) {
+              $scope.words.push({
+                text: item.Name,
+                weight: 1,
+                link: 'http://google.com'
+              });
+            }
           });
         });
         $scope.colors = ['#800026', '#bd0026', '#e31a1c', '#fc4e2a', '#fd8d3c', '#feb24c', '#fed976'];

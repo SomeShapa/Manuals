@@ -84,6 +84,13 @@ namespace Manuals.Models
                 .Property(e => e.Description)
                 .IsUnicode(false);
 
+            //modelBuilder.Entity<Comment>()
+            //   .Property(e => e.ManualId);
+
+            //modelBuilder.Entity<Comment>()
+            //  .Property(e => e.UserId)
+            //  .IsUnicode(false);
+
             modelBuilder.Entity<Comment>()
                 .HasMany(e => e.RatingComments)
                 .WithRequired(e => e.Comment)

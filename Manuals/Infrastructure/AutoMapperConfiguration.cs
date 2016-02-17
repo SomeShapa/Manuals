@@ -12,7 +12,7 @@ namespace Manuals.Infrastructure
     {
         public static void Configure()
         {
-            Mapper.Configuration.AllowNullCollections = true;
+            Mapper.Configuration.AllowNullCollections = false;
             Mapper.Configuration.AllowNullDestinationValues = true;
 
             Mapper.CreateMap<Manual, ManualViewModel>().
@@ -25,7 +25,8 @@ namespace Manuals.Infrastructure
             Mapper.CreateMap<CategoryViewModel, Category>();
             Mapper.CreateMap<TemplateViewModel, Template>();
 
-            Mapper.CreateMap<Comment, CommentViewModel>();
+            Mapper.CreateMap<Comment, CommentViewModel>().
+            ForMember(d => d.Rating, s => s.MapFrom(e => (e.RatingComments.Count(r => r.Liked == true) - e.RatingComments.Count(r => r.Liked == false))));
             Mapper.CreateMap<CommentViewModel, Comment>();
 
             Mapper.CreateMap<Tag, TagViewModel>();

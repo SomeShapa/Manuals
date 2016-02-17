@@ -27,11 +27,17 @@
         url: '/Home/GetTags').success (data) ->
         $scope.words = []
         angular.forEach data, (item) ->
-          $scope.words.push
-            text: item.Name
-            weight: 1
-            link: 'http://google.com'
-          return
+          flag=true;
+          angular.forEach $scope.words, (word) ->
+            if word.text==item.Name 
+                word.weight+=1
+                flag = false;
+          if flag
+             $scope.words.push
+               text: item.Name
+               weight: 1
+               link: 'http://google.com'
+             return
         return
       $scope.colors = [
         '#800026'
