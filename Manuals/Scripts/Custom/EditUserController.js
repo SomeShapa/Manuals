@@ -12,6 +12,7 @@
         }).success(function(data) {});
       };
       $scope.SaveUser = function() {
+        $scope.User.AvatarSrc = document.getElementById('Image1').lastChild.src;
         return $http({
           method: 'POST',
           url: '/User/UpdateUser',

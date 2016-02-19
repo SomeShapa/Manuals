@@ -12,6 +12,7 @@ Application.controller 'EditUserController', [
 
         $scope.SaveUser = ->
             #$scope.User.BirthDate = $scope.User.BirthDate.toISOString() if $scope.User.BirthDate
+            $scope.User.AvatarSrc = document.getElementById('Image1').lastChild.src
             $http(
                 method: 'POST'
                 url: '/User/UpdateUser'

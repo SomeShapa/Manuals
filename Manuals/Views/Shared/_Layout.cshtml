@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -37,7 +38,7 @@
                     @Html.ActionLink("Create New", "CreateNewManual", "Home", new { ReturnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-default btn-lg" })
                 </div>
                 <div>
-                    @Html.ActionLink("Edit Profile", "EditUserProfile", "User", null, new { @class = "btn btn-default btn-lg" })
+                    @Html.ActionLink("Edit Profile", "EditUserProfile", "User", new { userId = User.Identity.GetUserId(), returnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-default btn-lg" })
                 </div>
                 <div>
                     Theme:
