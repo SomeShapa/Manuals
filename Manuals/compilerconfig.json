@@ -42,5 +42,9 @@
   {
     "outputFile": "Scripts/Custom/CommentController.js",
     "inputFile": "Scripts/Custom/CommentController.coffee"
+  },
+  {
+    "outputFile": "Scripts/Custom/TemplateController.js",
+    "inputFile": "Scripts/Custom/TemplateController.coffee"
   }
 ]

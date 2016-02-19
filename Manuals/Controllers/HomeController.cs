@@ -22,6 +22,7 @@ namespace Manuals.Controllers
         private readonly TagRepository tagRepository;
         private readonly RatingRepository ratingRepository;
         private readonly TemplatesRepository templatesRepository;
+        private readonly UserRepository userRepository;
 
         public HomeController()
         {
@@ -31,11 +32,27 @@ namespace Manuals.Controllers
             tagRepository = new TagRepository(new ApplicationDbContext());
             ratingRepository = new RatingRepository(new ApplicationDbContext());
             templatesRepository = new TemplatesRepository(new ApplicationDbContext());
+            userRepository = new UserRepository(new ApplicationDbContext());
         }
 
         public ActionResult Index()
         {
+
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult GetManualPage(string category, int page)
+        {
+            IEnumerable<ManualViewModel> manuals = new List<ManualViewModel>();
+            int position = manualRepository.GetAll().Count()- ((page+1) * 5);
+            int a = manualRepository.GetAll().Count() - position;
+            if (position<0) {a = 5 + position; position = 0; }
+            if (a > 5) a = 5;
+            if (a>0) { 
+            if (category != "") { manuals = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll().Where(x => x.Category.Name == category)).GetRange(position, a); }
+            else { manuals = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll()).GetRange(position, a); } }
+            return Json(manuals, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -69,6 +86,19 @@ namespace Manuals.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public ActionResult DeleteManual(ManualViewModel manual)
+        {
+           if (User.IsInRole("Admin") || manual.UserId == User.Identity.GetUserId())
+            {
+                manualRepository.Delete(manual.Id);
+                manualRepository.Save();
+
+
+            }
+
+            return null;
+        }
 
         [HttpGet]
         public ActionResult GetCategories()

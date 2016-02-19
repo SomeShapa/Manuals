@@ -5,12 +5,20 @@
       var timerLoad, timerUpdate;
       $scope.Comments = [];
       $scope.NewComment = {};
+      $scope.Page = 0;
+      $(window).scroll(function() {
+        if ($(window).scrollTop() + $(window).height() > $(document).height() - 1) {
+          $scope.Page = $scope.Page + 1;
+          return $scope.GetComments();
+        }
+      });
       $scope.GetComments = function() {
         $http({
           method: 'POST',
-          url: '/Templates/GetComments',
+          url: '/Templates/GetCommentbyPage',
           data: {
-            manualId: $scope.NewComment.ManualId
+            manualId: $scope.NewComment.ManualId,
+            page: $scope.Page
           }
         }).success(function(data) {
           $scope.Comments = data;
@@ -41,7 +49,7 @@
       };
       timerUpdate = setInterval((function() {
         $scope.GetComments();
-      }), 5000);
+      }), 50000);
       timerLoad = setTimeout((function() {
         $scope.GetComments();
       }), 100);

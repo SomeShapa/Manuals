@@ -33,7 +33,10 @@ Application.controller 'AddNewManualController', [
                 $scope.NewManual.Tags.push data.tag if data.success
                 $scope.NewTag = ''
                 return
-        $scope.Create = (Manual) ->
+        $scope.Create = (Manual) ->    
+            Manual.ImageLink1 = document.getElementById('Image1').lastChild.src
+            Manual.ImageLink2 = document.getElementById('Image2').lastChild.src
+            Manual.ImageLink3 = document.getElementById('Image3').lastChild.src
             $http(
                 method: 'POST',
                 url: '/Home/CreateNewManual',

@@ -28,6 +28,8 @@ namespace Manuals.Entities
 
         public int Theme { get; set; }
 
+        public string AvatarSrc { get; set; }
+
         public int Language { get; set; }
 
         public DateTime? BirthDate { get; set; }

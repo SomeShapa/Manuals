@@ -26,7 +26,11 @@ namespace Manuals.Models
             // Add custom user claims here
             return userIdentity;
         }
-
+        public bool IsManualOwner(Manual manual)
+        {
+            if (manual.UserId == Id) return true;
+            else return false;
+        }
         public string FirstName { get; set; }
 
         public string SecondName { get; set; }
@@ -39,6 +43,8 @@ namespace Manuals.Models
         public string Description { get; set; }
 
         public string Theme { get; set; }
+        
+        public string AvatarSrc { get; set; }
 
     }
 
@@ -187,7 +193,7 @@ namespace Manuals.Models
                     userManager.AddToRole(admin.Id, role2.Name);
                 }
 
-                admin = new ApplicationUser { Email = "pavel.shipicyn@gmail.com", UserName = "pavel.shipicyn@gmail.com" };
+                admin = new ApplicationUser { Email = "pavel.shipicyn@gmail.com", UserName = "pavel.shipicyn@gmail.com", AvatarSrc= "http://webmaster.web-soluces.net/avatar/FaceCo-Homme.png" };
 
                 result = userManager.Create(admin, password);
                 if (result.Succeeded)

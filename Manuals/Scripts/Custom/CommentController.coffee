@@ -4,12 +4,18 @@
   ($scope, $http) ->
     $scope.Comments = []
     $scope.NewComment = {}
+    $scope.Page= 0;
+    $(window).scroll ->
+      if $(window).scrollTop() + $(window).height() > $(document).height() - 1
+        $scope.Page = $scope.Page + 1;
+        $scope.GetComments()
     $scope.GetComments = ->
       $http(
         method: 'POST'
-        url: '/Templates/GetComments'
-        data: 
-           manualId: $scope.NewComment.ManualId).success (data) ->
+        url: '/Templates/GetCommentbyPage'
+        data:
+            manualId:  $scope.NewComment.ManualId
+            page:  $scope.Page).success (data) ->
         $scope.Comments = data 
         return
       return
@@ -34,7 +40,7 @@
     timerUpdate = setInterval((->
       $scope.GetComments()
       return
-    ), 5000)
+    ), 50000)
     timerLoad = setTimeout((->
       $scope.GetComments()
       return

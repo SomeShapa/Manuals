@@ -7,10 +7,12 @@
 <div ng-controller="ProfileController">
     <div class="row">
         <div class="col-md-2">
-            <h2>View Profile</h2>
+            <img src='@Model.AvatarSrc' width="300" height="300">
+            
             <input type="hidden" ng-model="Id" value="@Model.Id" />
-            <p ng-init="GetManuals()">@Model.Email</p>
-            {{User.Email}}
+            <p ng-init="GetManuals()"> Email:  @Model.Email</p>
+           @*{{User.Email}}*@
+            Description: @Model.Description
             @if (User.IsInRole("Admin") || Model.Id == User.Identity.GetUserId())
             {
                 @Html.ActionLink("Edit", "EditUserProfile", "User", new { userId = Model.Id, returnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-default" })

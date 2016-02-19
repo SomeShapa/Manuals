@@ -283,6 +283,7 @@
     <Content Include="Scripts\Custom\CommentController.min.js">
       <DependentUpon>CommentController.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\Custom\DragNDrop.js" />
     <Content Include="Scripts\Custom\EditUserController.js">
       <DependentUpon>EditUserController.coffee</DependentUpon>
     </Content>
@@ -295,6 +296,7 @@
     <Content Include="Scripts\Custom\HomeController.min.js">
       <DependentUpon>HomeController.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\Custom\HtmlPage1.html" />
     <Content Include="Scripts\Custom\jqcloud.min.js" />
     <Content Include="Scripts\Custom\LangController.js">
       <DependentUpon>LangController.coffee</DependentUpon>
@@ -321,12 +323,6 @@
       <DependentUpon>RatingManualsFactory.js</DependentUpon>
     </Content>
     <Content Include="Scripts\Custom\TagCloud.js" />
-    <Content Include="Scripts\Custom\TestController.js">
-      <DependentUpon>TestController.coffee</DependentUpon>
-    </Content>
-    <Content Include="Scripts\Custom\TestController.min.js">
-      <DependentUpon>TestController.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\Custom\ThemeController.js">
       <DependentUpon>ThemeController.coffee</DependentUpon>
     </Content>
@@ -348,7 +344,6 @@
     <Content Include="Scripts\Custom\AddNewManualController.coffee" />
     <Content Include="Scripts\Custom\AutocompleteTag.coffee" />
     <Content Include="Scripts\Custom\HomeController.coffee" />
-    <Content Include="Scripts\Custom\TestController.coffee" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1158,7 +1153,9 @@
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Templates\Index.cshtml" />
+    <Content Include="Views\Templates\Text.cshtml" />
+    <Content Include="Views\Templates\Few_Images.cshtml" />
+    <Content Include="Views\Templates\Image.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

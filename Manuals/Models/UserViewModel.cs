@@ -15,6 +15,10 @@ namespace Manuals.Models
 
         public string Email { get; set; }
 
+        public int Theme { get; set; }
+
+        public string AvatarSrc { get; set; }
+
         public int Language { get; set; }
 
         public DateTime? BirthDate { get; set; }

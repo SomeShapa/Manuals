@@ -1,7 +1,17 @@
-﻿body {
+﻿@-webkit-keyframes fade-in {   0% { opacity: 0; }   100% { opacity: 1; }   }
+@-moz-keyframes    fade-in {   0% { opacity: 0; }   100% { opacity: 1; }   }
+@-o-keyframes      fade-in {   0% { opacity: 0; }   100% { opacity: 1; }   }
+@keyframes         fade-in {   0% { opacity: 0; }   100% { opacity: 1; }   }
+body {
     padding-top: 60px;
     padding-bottom: 20px;
+   
+  -webkit-animation: fade-in 2s ease-out; /* Safari 4+ */
+  -moz-animation: fade-in 2s ease-out; /* Fx 5+ */
+  -o-animation: fade-in 2s ease-out; /* Opera 12+ */
+  animation: fade-in 2s ease-out; /* IE 10+, Fx 29+ */
 }
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -37,7 +47,7 @@ textarea {
 .DarkTheme {
     background-color:rgb(60, 60, 60);
     border-color:rgb(20, 20, 20);
-   color:rgb(230, 230, 230);
+   color:rgb(180, 180, 180);
    
 }
  #Navbar.DarkTheme { 
@@ -49,6 +59,20 @@ textarea {
     color:rgb(108, 108, 108)
 }
 
+.well.DarkTheme {
+    background-color:rgb(34, 34, 34);
+    border-color:rgb(34, 34, 34);
+}
+
+
 .rating{
     padding-top:-30px;
 }
+
+ .thumb {
+    max-height: 203px;
+    max-width:125px;
+    border: 0px solid #000;
+    margin: 0px 0px 0 0;
+    margin-top: 7px;
+  }
