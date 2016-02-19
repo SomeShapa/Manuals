@@ -45,10 +45,10 @@ namespace Manuals.Controllers
         public ActionResult GetManualPage(string category, int page)
         {
             IEnumerable<ManualViewModel> manuals = new List<ManualViewModel>();
-            int position = manualRepository.GetAll().Count()- ((page+1) * 5);
+            int position = manualRepository.GetAll().Count()- ((page+1) * 7);
             int a = manualRepository.GetAll().Count() - position;
-            if (position<0) {a = 5 + position; position = 0; }
-            if (a > 5) a = 5;
+            if (position<0) {a = 7 + position; position = 0; }
+            if (a > 7) a = 7;
             if (a>0) { 
             if (category != "") { manuals = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll().Where(x => x.Category.Name == category)).GetRange(position, a); }
             else { manuals = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll()).GetRange(position, a); } }
@@ -78,6 +78,7 @@ namespace Manuals.Controllers
                 var currentUserId = User.Identity.GetUserId();
                 model.UserId = currentUserId;
                 model.DateAdded = DateTime.Now;
+               if (model.TemplateId==3) model.VideoLink = model.VideoLink.Substring(model.VideoLink.IndexOf("v=")+2, 11); 
                 Manual manual = Mapper.Map<Manual>(model);
                 manualRepository.Add(manual);
                 manualRepository.Save();

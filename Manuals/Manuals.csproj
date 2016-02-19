@@ -296,7 +296,6 @@
     <Content Include="Scripts\Custom\HomeController.min.js">
       <DependentUpon>HomeController.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\Custom\HtmlPage1.html" />
     <Content Include="Scripts\Custom\jqcloud.min.js" />
     <Content Include="Scripts\Custom\LangController.js">
       <DependentUpon>LangController.coffee</DependentUpon>
@@ -329,6 +328,12 @@
     <Content Include="Scripts\Custom\ThemeController.min.js">
       <DependentUpon>ThemeController.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\Custom\VideoController.js">
+      <DependentUpon>VideoController.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Custom\VideoController.min.js">
+      <DependentUpon>VideoController.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\AngularJS\angular.min.js.map" />
     <Content Include="Scripts\AngularJS\angular-touch.min.js.map" />
@@ -359,6 +364,7 @@
     <Content Include="Scripts\Custom\ProfileController.coffee" />
     <Content Include="Scripts\Custom\RatingFactory.coffee" />
     <Content Include="Scripts\Custom\CommentController.coffee" />
+    <Content Include="Scripts\Custom\VideoController.coffee" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -1156,6 +1162,7 @@
     <Content Include="Views\Templates\Text.cshtml" />
     <Content Include="Views\Templates\Few_Images.cshtml" />
     <Content Include="Views\Templates\Image.cshtml" />
+    <Content Include="Views\Templates\Video.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

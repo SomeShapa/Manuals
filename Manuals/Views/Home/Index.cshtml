@@ -5,7 +5,7 @@
 @using Microsoft.AspNet.Identity
 
 @{
-    ViewBag.Title = "View Profile";
+    ViewBag.Title = "Main";
     ViewBag.ManualId = "";
 }
 
@@ -30,8 +30,8 @@
                                 <a href="/Templates/{{Manual.Template.Name}}?manual={{Manual.Id}}">{{Manual.Name}}</a>
                                 <button class="btn btn-danger btn-sm pull-right " ng-click="DeleteManual(Manual)" ng-show='("@User.IsInRole("Admin")")||(Manual.UserId=="@User.Identity.GetUserId()")'>X</button>
                             </h4> 
-                            By  <a href="/User/ViewUserProfile/{{Manual.User.Id}}"> {{Manual.User.Email}} </a>
-                            <h5>{{Manual.Category.Name}} | <span ng-repeat="tag in Manual.Tags">{{tag.Name}} </span></h5>
+                            <h5><a href="/User/ViewUserProfile/{{Manual.User.Id}}"> {{Manual.User.FirstName}}  {{Manual.User.SecondName}} <div ng-show="Manual.User.FirstName==null">{{Manual.User.Email}}</div> </a></h5>
+                            <h6> Category: {{Manual.Category.Name}}  Tags: <span ng-repeat="tag in Manual.Tags">{{tag.Name}} </span></h6>
                            
                         </div>
 
