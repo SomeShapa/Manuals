@@ -37,6 +37,15 @@
         comment.Rating = data.newRating
         return
       return
+    $scope.DeleteComment = (comment) ->
+      $http(
+        method: 'POST'
+        url: '/Templates/DeleteComment'
+        data:
+          comment: comment).success (data) ->     
+        $scope.Comments.splice ($scope.Comments.indexOf comment), 1
+        return              
+        return
     timerUpdate = setInterval((->
       $scope.GetComments()
       return

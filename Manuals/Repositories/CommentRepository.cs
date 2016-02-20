@@ -26,6 +26,7 @@ namespace Manuals.Repositories
             Comment comment = context.Comments.Find((int)id);
             if (comment != null)
             {
+                context.RatingComments.RemoveRange(comment.RatingComments);
                 context.Comments.Remove(comment);
             }
         }

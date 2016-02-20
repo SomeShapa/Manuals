@@ -13,17 +13,38 @@
             <p ng-init="GetManuals()"> Email:  @Model.Email</p>
            @*{{User.Email}}*@
             Description: @Model.Description
+            <hr />
             @if (User.IsInRole("Admin") || Model.Id == User.Identity.GetUserId())
             {
-                @Html.ActionLink("Edit", "EditUserProfile", "User", new { userId = Model.Id, returnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Edit", "EditUserProfile", "User", new { userId = Model.Id, returnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-default col-md-12" })
             }
         </div>
-        <div class="col-md-6 col-md-offset-2">
-            <div ng-repeat="Manual in Manuals">
-                <div class="well">
-                    <h4>{{Manual.Id}}. {{Manual.Name}}</h4>
-                    <h5>Author: {{Manual.User.Email}}</h5>
-                    <h5>{{Manual.Category.Name}} <span ng-repeat="tag in Manual.Tags">{{tag.Name}}</span></h5>
+        <div class="col-md-6 col-md-offset-2" ng-controller="HomeController">
+            <div ng-repeat="Manual in Manuals | orderBy: '-DateAdded'">
+                <div class="well  col-md-12 ng-class:Theme" ng-show="Manual.User.Id=='@Model.Id'">
+
+                    <div class="row col-md-12" style="vertical-align:middle">
+                        <div class="col-md-4">
+                            <div class="col-md-6 col-md-pull-2">
+                                <div class="btn-group-vertical btn-group-sm pull-left">
+                                    <button class="btn btn-primary" ng-click="ChangeRating(Manual,true)">Up</button>
+                                    <div class="btn btn-default disabled" id="rating">{{Manual.Rating}}</div>
+                                    <button class="btn btn-danger" ng-click="ChangeRating(Manual,false)">Down</button>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="col-md-8" style="text-align:left">
+                            <h4>
+                                <a href="/Templates/{{Manual.Template.Name}}?manual={{Manual.Id}}">{{Manual.Name}}</a>
+                                <button class="btn btn-danger btn-sm pull-right " ng-click="DeleteManual(Manual)" ng-show='("@User.IsInRole("Admin")")||(Manual.UserId=="@User.Identity.GetUserId()")'>X</button>
+                            </h4>
+                            <h5><a href="/User/ViewUserProfile/{{Manual.User.Id}}"> {{Manual.User.FirstName}}  {{Manual.User.SecondName}} <div ng-show="Manual.User.FirstName==null">{{Manual.User.Email}}</div> </a></h5>
+                            <h6> Category: {{Manual.Category.Name}}  Tags: <span ng-repeat="tag in Manual.Tags">{{tag.Name}} </span></h6>
+
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>

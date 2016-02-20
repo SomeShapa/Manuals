@@ -47,6 +47,18 @@
           comment.Rating = data.newRating;
         });
       };
+      $scope.DeleteComment = function(comment) {
+        return $http({
+          method: 'POST',
+          url: '/Templates/DeleteComment',
+          data: {
+            comment: comment
+          }
+        }).success(function(data) {
+          $scope.Comments.splice($scope.Comments.indexOf(comment), 1);
+          return;
+        });
+      };
       timerUpdate = setInterval((function() {
         $scope.GetComments();
       }), 50000);
