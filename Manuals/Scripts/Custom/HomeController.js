@@ -4,6 +4,7 @@
     '$scope', '$http', function($scope, $http) {
       $scope.Manuals = [];
       $scope.CategoryFilter = "";
+      $scope.TagFilter = "";
       $scope.Page = 0;
       $(window).scroll(function() {
         if ($(window).scrollTop() + $(window).height() > $(document).height() - 1) {
@@ -12,6 +13,7 @@
             url: '/Home/GetManualPage',
             data: {
               category: $scope.CategoryFilter,
+              tag: $scope.TagFilter,
               page: $scope.Page
             }
           }).success(function(data) {
@@ -26,6 +28,7 @@
         url: '/Home/GetManualPage',
         data: {
           category: $scope.CategoryFilter,
+          tag: $scope.TagFilter,
           page: $scope.Page
         }
       }).success(function(data) {

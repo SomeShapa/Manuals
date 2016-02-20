@@ -42,16 +42,23 @@ namespace Manuals.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetManualPage(string category, int page)
+        public ActionResult GetManualPage(string category, string tag, int page)
         {
             IEnumerable<ManualViewModel> manuals = new List<ManualViewModel>();
-            int position = manualRepository.GetAll().Count()- ((page+1) * 7);
-            int a = manualRepository.GetAll().Count() - position;
+            int count=0;
+            if (category != "" && tag != "") {  count= Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll().Where(x => (x.Category.Name == category) && (x.Tags.FirstOrDefault(e => e.Name == tag) != null))).Count; }
+            if (tag != "" && category == "") {  count = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll().Where(x => x.Tags.FirstOrDefault(e => e.Name == tag) != null)).Count; }
+            if (tag == "" && category != "") {  count = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll().Where(x => x.Category.Name == category)).Count; }
+            if (tag == "" && category == "") {  count = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll()).Count; }
+            int position = count- ((page+1) * 7);
+            int a = count - position;
             if (position<0) {a = 7 + position; position = 0; }
             if (a > 7) a = 7;
             if (a>0) { 
-            if (category != "") { manuals = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll().Where(x => x.Category.Name == category)).GetRange(position, a); }
-            else { manuals = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll()).GetRange(position, a); } }
+            if (category != "" && tag != "") { manuals = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll().Where(x =>( x.Category.Name == category)&&(x.Tags.FirstOrDefault(e=>e.Name== tag)!=null))).GetRange(position, a); }
+            if (tag != ""&& category == "") { manuals = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll().Where(x => x.Tags.FirstOrDefault(e => e.Name == tag) != null)).GetRange(position, a); }
+            if (tag == "" && category != "") { manuals = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll().Where(x => x.Category.Name == category)).GetRange(position, a); }
+            if (tag == "" && category == "") { manuals = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll()).GetRange(position, a); } }
             return Json(manuals, JsonRequestBehavior.AllowGet);
         }
 

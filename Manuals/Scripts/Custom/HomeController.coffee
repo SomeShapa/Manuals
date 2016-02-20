@@ -4,6 +4,7 @@
     ($scope, $http) ->
       $scope.Manuals = []
       $scope.CategoryFilter= "";
+      $scope.TagFilter ="";
       $scope.Page= 0;
       $(window).scroll ->
         if $(window).scrollTop() + $(window).height() > $(document).height() - 1
@@ -12,6 +13,7 @@
                 url: '/Home/GetManualPage'
                 data:
                   category:  $scope.CategoryFilter
+                  tag:  $scope.TagFilter
                   page:  $scope.Page).success (data) ->
                    $scope.Manuals= $scope.Manuals.concat data
                    $scope.Page+=1;
@@ -32,6 +34,7 @@
         url: '/Home/GetManualPage'
         data:
           category:  $scope.CategoryFilter
+          tag:  $scope.TagFilter
           page:  $scope.Page).success (data) ->
             $scope.Manuals= $scope.Manuals.concat data
             $scope.Page+=1;
