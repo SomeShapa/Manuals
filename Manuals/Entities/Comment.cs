@@ -26,6 +26,8 @@ namespace Manuals.Entities
 
         public int ManualId { get; set; }
 
+        public string AvatarSrc { get; set; }
+
         public DateTime DateAdded { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

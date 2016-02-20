@@ -24,5 +24,6 @@ namespace Manuals.Models
         public DateTime? BirthDate { get; set; }
 
         public string Description { get; set; }
+
     }
 }

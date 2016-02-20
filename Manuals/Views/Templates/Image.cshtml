@@ -1,4 +1,5 @@
 ﻿@model Manuals.Models.CommentViewModel
+@using Microsoft.AspNet.Identity
 @{
             ViewBag.Title = ViewBag.Manual.Name;
 }
@@ -7,50 +8,65 @@
 
         @ViewBag.Manual.Body.ToString()
     </div>
-    <img src="@ViewBag.Manual.ImageLink1" class="img-rounded col-md-5" />
+    <img src="@ViewBag.Manual.ImageLink1" class="img-rounded col-md-5" style="max-width:700px" />
 </div>
 <wbr />
 <hr />
-<div ng-controller="CommentController">
+<div ng-controller="CommentController" class="col-md-12">
     <div class="row">
-        <div class="col-md-6 col-md-offset-2">
-            @using (Html.BeginForm())
+
+        @using (Html.BeginForm())
             {
-                @Html.AntiForgeryToken()
-                <div ng-init="NewComment.ManualId=@ViewBag.ManualId;"></div>
-                <div class="form-horizontal">
+            @Html.AntiForgeryToken()
+            <div ng-init="NewComment.ManualId=@ViewBag.ManualId;"></div>
+                    <div class="form-horizontal">
 
-                    <div class="form-group">
-                        @*@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                        <div class="input-group col-md-push-1 col-md-10">
-                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", ng_model = "NewComment.Description" } })
-                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="Create(NewComment)">New comment</button>
-                            </span>
+                        <div class="form-group">
+                            @*@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <div class="input-group col-md-push-1 col-md-10">
+                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", ng_model = "NewComment.Description" } })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="Create(NewComment)">New comment</button>
+                                </span>
+                            </div>
                         </div>
+                    </div>}
+
+
+        <div ng-repeat="Comment in Comments | orderBy: '-Id'">
+            <div class="well col-md-12 ng-class:Theme" @*ng-click="OpenManual(Manual.Id, Manual.Template.Name)"*@>
+                <div class="row col-md-12">
+
+                    <div class="col-md-8" style="overflow-wrap:break-word;">
+                        {{Comment.Description}}
+                        <button class="btn btn-danger btn-sm pull-right " ng-click="DeleteComment(Comment)" ng-show='("@User.IsInRole("Admin")")||(Comment.UserId=="@User.Identity.GetUserId()")'>X</button>
+
                     </div>
-                </div>}
-
-
-            <div ng-repeat="Comment in Comments | orderBy: '-Id'">
-                <div class="well col-md-12 ng-class:Theme" @*ng-click="OpenManual(Manual.Id, Manual.Template.Name)"*@>
-                    <div class="row">
-
-                        <div class="col-md-9" style="overflow-wrap:break-word;">
-                            {{Comment.Description}}
+                    <div class="col-md-4">
+                        <div class="col-md-6 pull-left col-md-push-4" ng-show="Comment.AvatarSrc!=null">
+                            <a href="/User/ViewUserProfile/{{Comment.UserId}}">
+                                <img src="{{Comment.AvatarSrc}}" style="width:100px" />
+                            </a>
                         </div>
-                        <div class="col-md-2 col-md-offset-1">
-                            <div class="btn-group-vertical pull-right">
-                                <button class="btn btn-primary" ng-click="ChangeCommentRating(Comment,true)">Up</button>
+                        <div class="col-md-6 pull-left col-md-push-4" ng-show="Comment.AvatarSrc==null">
+                            <a href="/User/ViewUserProfile/{{Comment.UserId}}">
+                                User Profile
+                            </a>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1 pull-right col-md-push-4">
+                            <div class="btn-group-vertical">
+                                <button class="btn btn-primary btn-sm" ng-click="ChangeCommentRating(Comment,true)">Up</button>
                                 <div class="btn btn-default disabled" id="rating">{{Comment.Rating}}</div>
-                                <button class="btn btn-danger" ng-click="ChangeCommentRating(Comment,false)">Down</button>
+                                <button class="btn btn-danger btn-sm" ng-click="ChangeCommentRating(Comment,false)">Down</button>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
+
     </div>
 </div>
-
+<wbr />

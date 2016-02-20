@@ -15,6 +15,8 @@ namespace Manuals.Models
 
         public int ManualId { get; set; }
 
+        public string AvatarSrc { get; set; }
+
         public int Rating { get; set; }
 
         public DateTime DateAdded { get; set; }
