@@ -11,13 +11,13 @@ Application.controller 'AddNewManualController', [
             method: 'GET',
             url: '/Home/GetCategories').success (data) ->
             $scope.Categories = data
-            $scope.NewManual.CategoryId = $scope.Categories[0].Id
+            $scope.NewManual.CategoryId = $scope.Categories[1].Id
             return
         $http(
             method: 'GET',
             url: '/Home/GetTemplates').success (data) ->
             $scope.Templates = data
-            $scope.NewManual.TemplateId = $scope.Templates[0].Id
+            $scope.NewManual.TemplateId = $scope.Templates[1].Id
             return
         $http(
             method: 'GET',

@@ -13,14 +13,14 @@
         url: '/Home/GetCategories'
       }).success(function(data) {
         $scope.Categories = data;
-        $scope.NewManual.CategoryId = $scope.Categories[0].Id;
+        $scope.NewManual.CategoryId = $scope.Categories[1].Id;
       });
       $http({
         method: 'GET',
         url: '/Home/GetTemplates'
       }).success(function(data) {
         $scope.Templates = data;
-        $scope.NewManual.TemplateId = $scope.Templates[0].Id;
+        $scope.NewManual.TemplateId = $scope.Templates[1].Id;
       });
       $http({
         method: 'GET',

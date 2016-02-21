@@ -10,10 +10,12 @@
 }
 
 <div ng-controller="HomeController">
+
     <div class="row">
         <div class="col-md-7 col-md-offset-2" id="Manuals">
             <div ng-repeat="Manual in Manuals | orderBy: '-DateAdded'">
-                <div class="well  col-md-12 ng-class:Theme">
+              
+                <div class="well  col-md-12 ng-class:Theme" ng-show="(((Manual.Category.Name==CategoryFilter)||(CategoryFilter==''))&&compare(Manual.Tags, TagFilter))">
                                   
                     <div class="row col-md-12" style="vertical-align:middle">
                         <div class="col-md-4">
@@ -48,6 +50,12 @@
         </div>
         <div class="col-md-3">
             <jqcloud words="words" autoResize="true" height="100" colors="{{colors}}" delay="3" steps="7" font-size="{from:0.09, to:0.04}"></jqcloud>
-        </div>        
+        </div>  
+        <div class="col-md-3 pull-right small" style="text-align:center; margin-top:20px;">
+            Category
+                <select ng-model="CategoryFilter" id="CategoryId" name="CategoryId" class="btn btn-default btn-sm">
+                    <option ng-repeat="category in Categories" value="{{category.Name}}" >{{category.Name}}</option>
+                </select>
+         </div>        
     </div>
 </div>

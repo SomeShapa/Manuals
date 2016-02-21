@@ -5,6 +5,7 @@
       $scope.Manuals = []
       $scope.CategoryFilter= "";
       $scope.TagFilter ="";
+      $scope.TagAllow =true;
       $scope.Page= 0;
       $(window).scroll ->
         if $(window).scrollTop() + $(window).height() > $(document).height() - 1
@@ -18,7 +19,12 @@
                    $scope.Manuals= $scope.Manuals.concat data
                    $scope.Page+=1;
                 return
-        
+
+      $http(
+        method: 'GET',
+        url: '/Home/GetCategories').success (data) ->
+        $scope.Categories = data
+        return        
       $scope.colors = [
         '#800026'
         '#bd0026'
@@ -40,6 +46,7 @@
             $scope.Page+=1;
             return
 
+
       $scope.ChangeRating = (manual, liked) ->
         $http(
           method: 'POST'
@@ -51,8 +58,7 @@
           return
         return
 
-      $scope.DeleteManual = (manual) ->
-       
+      $scope.DeleteManual = (manual) ->  
         $http(
           method: 'POST'
           url: '/Home/DeleteManual'
@@ -61,6 +67,19 @@
                  $scope.Manuals.splice ($scope.Manuals.indexOf manual), 1
           return              
         return
+
+      $scope.compare = (tags, tag) ->
+        if `tag == ''`
+          return true
+        else
+          f = false
+          tags.forEach (item, i, arr) ->
+            if `item.Name == tag`
+              f = true
+            return
+          if f
+            return true
+        false
 
       $scope.Tags = []
       $http(
@@ -77,7 +96,9 @@
              $scope.words.push
                text: item.Name
                weight: 1
-               link: 'http://google.com'
+               handlers: click: ->
+                 $scope.TagFilter =item.Name
+                 return
              return
         return
 

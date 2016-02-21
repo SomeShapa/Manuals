@@ -4,6 +4,8 @@
     '$scope', '$http', function($scope, $http) {
       $scope.Manuals = [];
       $scope.User = {};
+      $scope.TopDiscManuals = {};
+      $scope.TopRatManuals = {};
       $scope.GetManuals = function() {
         return $http({
           method: 'POST',
@@ -15,6 +17,52 @@
           $scope.Manuals = data;
         });
       };
+      $scope.GeMostDisc = function() {
+        return $http({
+          method: 'POST',
+          url: '/Home/GetMostDiscussedManual',
+          data: {
+            UserId: $scope.Id
+          }
+        }).success(function(data) {
+          $scope.TopDiscManuals = data;
+        });
+      };
+      $scope.GetTop = function() {
+        return $http({
+          method: 'POST',
+          url: '/Home/GetTopManual',
+          data: {
+            UserId: $scope.Id
+          }
+        }).success(function(data) {
+          $scope.TopRatManuals = data;
+        });
+      };
+      $scope.ChangeRating = function(manual, liked) {
+        $http({
+          method: 'POST',
+          url: '/Home/ChangeRating',
+          data: {
+            manual: manual,
+            liked: liked
+          }
+        }).success(function(data) {
+          manual.Rating = data.newRating;
+        });
+      };
+      $scope.DeleteManual = function(manual) {
+        $http({
+          method: 'POST',
+          url: '/Home/DeleteManual',
+          data: {
+            manual: manual
+          }
+        }).success(function(data) {
+          return $scope.Manuals.splice($scope.Manuals.indexOf(manual), 1);
+        });
+      };
+      return;
     }
   ]);
 

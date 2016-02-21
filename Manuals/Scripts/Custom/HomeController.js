@@ -5,6 +5,7 @@
       $scope.Manuals = [];
       $scope.CategoryFilter = "";
       $scope.TagFilter = "";
+      $scope.TagAllow = true;
       $scope.Page = 0;
       $(window).scroll(function() {
         if ($(window).scrollTop() + $(window).height() > $(document).height() - 1) {
@@ -21,6 +22,12 @@
             return $scope.Page += 1;
           });
         }
+      });
+      $http({
+        method: 'GET',
+        url: '/Home/GetCategories'
+      }).success(function(data) {
+        $scope.Categories = data;
       });
       $scope.colors = ['#800026', '#bd0026', '#e31a1c', '#fc4e2a', '#fd8d3c', '#feb24c', '#fed976'];
       $http({
@@ -59,6 +66,23 @@
         });
         return;
       };
+      $scope.compare = function(tags, tag) {
+        var f;
+        if (tag == '') {
+          return true;
+        } else {
+          f = false;
+          tags.forEach(function(item, i, arr) {
+            if (item.Name == tag) {
+              f = true;
+            }
+          });
+          if (f) {
+            return true;
+          }
+        }
+        return false;
+      };
       $scope.Tags = [];
       $http({
         method: 'GET',
@@ -78,7 +102,11 @@
             $scope.words.push({
               text: item.Name,
               weight: 1,
-              link: 'http://google.com'
+              handlers: {
+                click: function() {
+                  $scope.TagFilter = item.Name;
+                }
+              }
             });
           }
         });

@@ -35,6 +35,8 @@ namespace Manuals.Controllers
             userRepository = new UserRepository(new ApplicationDbContext());
         }
 
+
+
         public ActionResult Index()
         {
 
@@ -44,6 +46,7 @@ namespace Manuals.Controllers
         [HttpPost]
         public ActionResult GetManualPage(string category, string tag, int page)
         {
+
             IEnumerable<ManualViewModel> manuals = new List<ManualViewModel>();
             int count=0;
             if (category != "" && tag != "") {  count= Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll().Where(x => (x.Category.Name == category) && (x.Tags.FirstOrDefault(e => e.Name == tag) != null))).Count; }
@@ -62,12 +65,28 @@ namespace Manuals.Controllers
             return Json(manuals, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
-        public ActionResult GetManuals()
+        [HttpPost]
+        public ActionResult GetTopManual(string UserId)
         {
-            IEnumerable<ManualViewModel> manuals = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll());
+            IEnumerable<ManualViewModel> manuals = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll().Where(x => (x.UserId == UserId) &&
+            (x.Ratings.Count(r => r.Liked == true) - x.Ratings.Count(r => r.Liked == false)
+            == manualRepository.GetAll().Where(z => z.UserId == UserId).Max(e => (e.Ratings.Count(r => r.Liked == true) - e.Ratings.Count(r => r.Liked == false))))));
             return Json(manuals, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult GetMostDiscussedManual(string UserId)
+        {
+            IEnumerable<ManualViewModel> manuals = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll().Where(x=>(x.UserId==UserId)&&   (x.Comments.Count== manualRepository.GetAll().Where(z =>z.UserId == UserId).Max(y =>y.Comments.Count))));
+            return Json(manuals, JsonRequestBehavior.AllowGet);
+        }
+
+        //[HttpGet]
+        //public ActionResult GetManuals()
+        //{
+        //    IEnumerable<ManualViewModel> manuals = Mapper.Map<List<ManualViewModel>>(manualRepository.GetAll());
+        //    return Json(manuals, JsonRequestBehavior.AllowGet);
+        //}
 
         [Authorize]
         public ActionResult CreateNewManual(string ReturnUrl)
@@ -76,6 +95,8 @@ namespace Manuals.Controllers
             ViewBag.ReturnUrl = ReturnUrl;
             return View(model);
         }
+
+
 
         [HttpPost]
         public ActionResult CreateNewManual(ManualViewModel model, string ReturnUrl = "/")
@@ -89,6 +110,7 @@ namespace Manuals.Controllers
                 Manual manual = Mapper.Map<Manual>(model);
                 manualRepository.Add(manual);
                 manualRepository.Save();
+                //MedalsCheck();
                 return Json(new { result = "Redirect", url = ReturnUrl });
             }
             return View(model);
