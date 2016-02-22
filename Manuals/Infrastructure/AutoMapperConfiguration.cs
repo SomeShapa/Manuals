@@ -32,8 +32,15 @@ namespace Manuals.Infrastructure
             Mapper.CreateMap<Tag, TagViewModel>();
             Mapper.CreateMap<TagViewModel,Tag>();
 
+            Mapper.CreateMap<Medal, MedalViewModel>();
+            Mapper.CreateMap<MedalViewModel, Medal>();
+
             Mapper.CreateMap<ApplicationUser, ApplicationUser>()
                 .ForMember(d => d.Manuals, opt => opt.Ignore());
+
+            Mapper.CreateMap<ApplicationUser, ApplicationUser>()
+                .ForMember(d => d.Medals, opt => opt.Ignore());
+
             //Mapper.CreateMap<UserViewModel, ApplicationUser>();
 
         }

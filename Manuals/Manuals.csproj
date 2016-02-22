@@ -202,6 +202,7 @@
     <Compile Include="Infrastructure\AutoMapperConfiguration.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\MedalViewModel.cs" />
     <Compile Include="Models\TemplateViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\CommentViewModel.cs" />
@@ -215,6 +216,7 @@
     <Compile Include="Repositories\CommentRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\ManualRepository.cs" />
+    <Compile Include="Repositories\MedalRepository.cs" />
     <Compile Include="Repositories\RatingCommentRepository.cs" />
     <Compile Include="Repositories\RatingRepository.cs" />
     <Compile Include="Repositories\TagRepository.cs" />

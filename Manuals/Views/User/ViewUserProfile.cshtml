@@ -6,18 +6,18 @@
 }
 <div ng-controller="ProfileController">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4" style="text-align:center">
             <img src='@Model.AvatarSrc' width="300" height="300">
-            
+            <br />
+            @{ foreach (var medal in Model.Medals) {<img src="@medal.ImageLink" title="@medal.Name" />  } }
             <input type="hidden" ng-model="Id" value="@Model.Id" />
-            <p ng-init="GetTop(); GeMostDisc();"> Email:  @Model.Email</p>
-           @*{{User.Email}}*@
-            Description: @Model.Description
+            <br />
+            <h3> @Model.FirstName  @Model.SecondName</h3>
+
+           @Model.Description
            
-            @if (User.IsInRole("Admin") || Model.Id == User.Identity.GetUserId())
-            { <hr />
-                @Html.ActionLink("Edit", "EditUserProfile", "User", new { userId = Model.Id, returnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-default col-md-12" })
-            }
+            <p ng-init="GetTop(); GeMostDisc();" style="opacity:0.2; font-size:10px;"> Email:  @Model.Email</p>
+          
             <div style="height:40px;"></div>
             <div ng-repeat="TopRatManual in TopRatManuals | orderBy: '-DateAdded'" >
 
@@ -34,7 +34,7 @@
                             </div>
 
                         </div>
-                        <div class="col-md-8" style="text-align:left">
+                        <div class="col-md-8">
                             <h4>
                                 <a href="/Templates/{{TopRatManual.Template.Name}}?manual={{TopRatManual.Id}}">{{TopRatManual.Name}}</a> <text style="text-align:right; font-size:11px; opacity:0.2"> Top Rated</text>
                                 <button class="btn btn-danger btn-sm pull-right " ng-click="DeleteManual(TopRatManual)" ng-show='("@User.IsInRole("Admin")")||(TopRatManual.UserId=="@User.Identity.GetUserId()")'>X</button>
@@ -62,7 +62,7 @@
                             </div>
 
                         </div>
-                        <div class="col-md-8" style="text-align:left">
+                        <div class="col-md-8">
                             <h4>
                                 <a href="/Templates/{{TopDiscManual.Template.Name}}?manual={{TopDiscManual.Id}}">{{TopDiscManual.Name}}</a> <text style="text-align:right; font-size:11px; opacity:0.2"> Most discussed</text>
                                 <button class="btn btn-danger btn-sm pull-right " ng-click="DeleteManual(TopDiscManual)" ng-show='("@User.IsInRole("Admin")")||(TopDiscManual.UserId=="@User.Identity.GetUserId()")'>X</button>
@@ -75,6 +75,10 @@
                     </div>
                 </div>
             </div>
+            @if (User.IsInRole("Admin") || Model.Id == User.Identity.GetUserId())
+            { <wbr /><hr />
+            @Html.ActionLink("Edit", "EditUserProfile", "User", new { userId = Model.Id, returnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-default col-md-12" })
+            }
         </div>
         
 
@@ -95,7 +99,7 @@
                                 </div>
 
                             </div>
-                            <div class="col-md-8" style="text-align:left">
+                            <div class="col-md-8" style="text-align:center" >
                                 <h4>
                                     <a href="/Templates/{{Manual.Template.Name}}?manual={{Manual.Id}}">{{Manual.Name}}</a>
                                     <button class="btn btn-danger btn-sm pull-right " ng-click="DeleteManual(Manual)" ng-show='("@User.IsInRole("Admin")")||(Manual.UserId=="@User.Identity.GetUserId()")'>X</button>

@@ -54,7 +54,7 @@ namespace Manuals.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-
+        
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Manual> Manuals { get; set; }
@@ -154,7 +154,7 @@ namespace Manuals.Models
             modelBuilder.Entity<Medal>()
                 .HasMany(e => e.Users)
                 .WithMany(e => e.Medals)
-                .Map(m => m.ToTable("BasketMedal").MapLeftKey("MedalId").MapRightKey("UserId"));
+                .Map(m => m.ToTable("BasketMedal").MapRightKey("MedalId").MapLeftKey("UserId"));
 
             modelBuilder.Entity<Tag>()
                 .Property(e => e.Name)

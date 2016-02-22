@@ -43,6 +43,27 @@ namespace Manuals.Controllers
             return View();
         }
 
+        public void MedalsCheck()
+        {
+            ApplicationUser user = userRepository.GetById(User.Identity.GetUserId());
+
+
+            if (user.Medals.Count == 0) user.Medals.Add(new Medal() { Id = 7, Name = medalRepository.GetById(7).Name, ImageLink = medalRepository.GetById(7).ImageLink });
+            if (user.Manuals.Count > 9 && user.Medals.FirstOrDefault(x => x.Id == 1) == null) user.Medals.Add(new Medal() { Id = 1, Name = medalRepository.GetById(1).Name, ImageLink = medalRepository.GetById(1).ImageLink });
+            if (user.Manuals.Count > 29 && user.Medals.FirstOrDefault(x => x.Id == 2) == null) user.Medals.Add(new Medal() { Id = 2, Name = medalRepository.GetById(2).Name, ImageLink = medalRepository.GetById(2).ImageLink });
+
+            if (user.Manuals.Sum(x => x.Comments.Count(y => y.UserId == user.Id)) > 14 && user.Medals.FirstOrDefault(x => x.Id == 3) == null) user.Medals.Add(new Medal() { Id = 3, Name = medalRepository.GetById(3).Name, ImageLink = medalRepository.GetById(3).ImageLink });
+            Random i = new Random();
+            if (i.Next(0, 50) == 10 && user.Medals.FirstOrDefault(x => x.Id == 4) == null) user.Medals.Add(new Medal() { Id = 4, Name = medalRepository.GetById(4).Name, ImageLink = medalRepository.GetById(4).ImageLink });
+
+            if (user.Manuals.Count(x => x.Category.Name == "Math") > 0 && user.Medals.FirstOrDefault(x => x.Id == 5) == null) user.Medals.Add(new Medal() { Id = 5, Name = medalRepository.GetById(5).Name, ImageLink = medalRepository.GetById(5).ImageLink });
+
+            if (user.Manuals.Count(x => x.Category.Name == "Literature") > 0 && user.Medals.FirstOrDefault(x => x.Id == 6) == null) user.Medals.Add(new Medal() { Id = 6, Name = medalRepository.GetById(6).Name, ImageLink = medalRepository.GetById(6).ImageLink });
+
+            userRepository.Save();
+
+        }
+
         [HttpPost]
         public ActionResult GetManualPage(string category, string tag, int page)
         {
@@ -110,7 +131,7 @@ namespace Manuals.Controllers
                 Manual manual = Mapper.Map<Manual>(model);
                 manualRepository.Add(manual);
                 manualRepository.Save();
-                //MedalsCheck();
+                MedalsCheck();
                 return Json(new { result = "Redirect", url = ReturnUrl });
             }
             return View(model);
